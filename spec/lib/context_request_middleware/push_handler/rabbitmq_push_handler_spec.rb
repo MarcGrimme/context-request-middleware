@@ -11,6 +11,7 @@ module ContextRequestMiddleware
       let(:bunny_channel) { double('bunny_channel') }
       let(:exchange_name) { 'exchange' }
       let(:exchange) { double('exchange') }
+      let(:confirmed) { true }
 
       before do
         expect(Bunny).to receive(:new).with(url, session_params)
@@ -21,12 +22,13 @@ module ContextRequestMiddleware
         expect(bunny_channel).to receive(:confirm_select)
         expect(bunny_channel).to receive(:exchanges)
           .and_return(exchange_name => exchange)
-        expect(bunny_channel).to receive(:wait_for_confirms).and_return(true)
-        expect(bunny_channel).to receive(:close)
+        expect(bunny_channel).to receive(:wait_for_confirms)
+          .and_return(confirmed)
+        allow(bunny_channel).to receive(:close)
         expect(exchange).to receive(:publish)
       end
 
-      describe 'push a valid hash' do
+      describe '#push' do
         context 'with minimum config' do
           let(:poolsize) { 1 }
           let(:url) { nil }
@@ -63,6 +65,27 @@ module ContextRequestMiddleware
               .and_return(exchange)
           end
           it { expect(subject.push({})).to be_nil }
+        end
+
+        context 'with network error' do
+          let(:poolsize) { 1 }
+          let(:url) { nil }
+          let(:heartbeat) { nil }
+          let(:session_params) do
+            { automatically_recover: false, threaded: false,
+              heartbeat: heartbeat }
+          end
+          let(:confirmed) { false }
+          subject { described_class.new(exchange_name: exchange_name) }
+          before do
+            expect(bunny_channel).to receive(:nacked_set).and_return(10)
+            expect(bunny_channel).to receive(:unconfirmed_set).and_return(10)
+          end
+          it do
+            expect { subject.push({}) }
+              .to raise_error(described_class::ConfirmationFailed,
+                              'Message confirmation on the exchange exchange has failed(10/10).')
+          end
         end
       end
     end
