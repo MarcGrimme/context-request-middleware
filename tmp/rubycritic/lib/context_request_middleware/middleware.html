@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="../../assets/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="../../overview.html"><img src="../../assets/images/logo.png" alt="Ruby Critic Logo" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+      
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="../../overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../../code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+  <!--Page Title -->
+  <div class="Page_Title">
+    <div class="file-time">
+      <span class="committed-at">
+        
+          Never committed
+        
+      </span>
+    </div>
+    <div>
+      <h3><small>lib/context_request_middleware /</small> middleware.rb</h3>
+    </div>
+  </div>
+  <!--End Page Title -->
+  <div class="Content_Wrapper">
+    <!-- code detail -->
+    <div class="code-top-detail clearfix row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="rating a big">
+              A
+            </div>
+          </div>
+          <div class="code-statistics col-md-11">
+            <div class="col-md-3">
+              <div><span class="metric">96</span><small> lines of codes</small></div>
+              <div><span class="metric">13</span><small> methods</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">3.7</span><small> complexity/method</small></div>
+              <div><span class="metric">0</span><small> churn</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">48.25</span><small> complexity</small></div>
+              <div><span class="metric">0</span><small> duplications</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="code-tabs">
+          <ul class="nav nav-pills right-to-left">
+            <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
+            <li class="active">
+              <a href="#" id="toggle-smells" class="toggle-button button">
+                12
+                smells
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
+
+module ContextRequestMiddleware
+  # :nodoc:
+  class Middleware<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank"><b>IrresponsibleModule</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware has no descriptive comment</span>          </div>  </li></ol>
+    def initialize(app)
+      @app = app
+      @data = {}
+    end
+
+    def call(env)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#call has approx 7 statements</span>          </div>  </li></ol>
+      request = Rack::Request.new(env)
+      request(request) if valid_sample?(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#call calls 'valid_sample?(request)' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L13" class="js-smell-location">0</a>                  <a href="middleware.html#L15" class="js-smell-location">1</a>                  </div>  </li></ol>
+      status, header, body = @app.call(env)
+      if valid_sample?(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#call calls 'valid_sample?(request)' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L13" class="js-smell-location">0</a>                  <a href="middleware.html#L15" class="js-smell-location">1</a>                  </div>  </li></ol>
+        response(status, header, body)
+        push context(status, header, body, request)
+        push @data
+      end
+      [status, header, body]
+    end
+
+    private
+
+    def request(request)
+      request_data(request)
+      others_data(request)
+    end
+
+    def request_data(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#request_data has approx 6 statements</span>          </div>  </li></ol>
+      @data[:request_id] = ContextRequestMiddleware.select_request_headers(
+        ContextRequestMiddleware.request_id_headers, request
+      )
+      @data[:request_context] = request_context(request)
+      @data[:request_start_time] = request_start_time(request)
+      @data[:request_method] = request.request_method
+      @data[:request_params] = request.params
+      @data[:request_path] = request.path
+    end
+
+    def others_data(request)
+      @data[:app_id] = ContextRequestMiddleware.app_id
+      @data[:source] = source(request)
+      @data[:host] = request.host
+    end
+
+    def response(status, _headers, _response)
+      @data[:request_status] = status
+    end
+
+    def push(data)
+      (@push_handler ||= PushHandler.from_middleware)&amp;.push(data)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#push performs a nil-check</span>          </div>  </li></ol>
+    end
+
+    def valid_sample?(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#valid_sample? doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+      handler = SamplingHandler.from_request(request)
+      if handler
+        handler.valid?
+      else
+        false
+      end
+    end
+
+    # checks if this request changed the context
+    def context(status, header, body, request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Long-Parameter-List.md" target="_blank"><b>LongParameterList</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context has 4 parameters</span>          </div>  </li></ol>
+      response = Rack::Response.new(body, status, header)
+      context_retriever(response, request)&amp;.call<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context performs a nil-check</span>          </div>  </li></ol>
+    end
+
+    # retrieves the context of the current request
+    def request_context(request)
+      @request_context ||= Request.retriever_for_request(request)&amp;.call<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#request_context performs a nil-check</span>          </div>  </li></ol>
+    end
+
+    def context_retriever(request, response)
+      @context_retriever ||=
+        Context.retriever_for_response(response, request)
+    end
+
+    def request_start_time(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#request_start_time doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+      ContextRequestMiddleware.select_request_headers(
+        ContextRequestMiddleware.request_start_time_headers,
+        request
+      )
+    end
+
+    def source(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+      (ContextRequestMiddleware.remote_ip_headers &amp;&amp;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source calls 'ContextRequestMiddleware.remote_ip_headers' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L88" class="js-smell-location">0</a>                  <a href="middleware.html#L90" class="js-smell-location">1</a>                  </div>  </li></ol>
+       ContextRequestMiddleware
+        .select_request_headers(ContextRequestMiddleware.remote_ip_headers,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source calls 'ContextRequestMiddleware.remote_ip_headers' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L88" class="js-smell-location">0</a>                  <a href="middleware.html#L90" class="js-smell-location">1</a>                  </div>  </li></ol>
+                                request)) ||
+        request.get_header(&#39;action_dispatch.remote_ip&#39;) ||
+        request.get_header(&#39;HTTP_X_FORWARDED_HOST&#39;)
+    end
+  end
+end
+</code>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScripts -->
+    <script src='../../assets/javascripts/jquery.min.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.min.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo.min.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/prettify.js'></script>
+    <script src='../../assets/javascripts/bootstrap.min.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+    <script src='../../assets/javascripts/jquery.filtertable.min.js'></script>
+  </body>
+</html>

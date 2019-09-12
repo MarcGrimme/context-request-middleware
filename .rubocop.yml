@@ -1,0 +1,12 @@
+Style/ModuleFunction:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Exclude:
+    - spec/*
+    - spec/**/*spec.rb
+Metrics/BlockLength:
+  Exclude:
+    - spec/*
+    - spec/**/*spec.rb
+    - context-request-middleware.gemspec
