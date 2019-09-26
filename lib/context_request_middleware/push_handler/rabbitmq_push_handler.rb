@@ -79,7 +79,7 @@ module ContextRequestMiddleware
       # return the channel if a channel is already there otherwise create a new
       # exchange with the predefined settings.
       # Can be overwriten by ContextRequestMiddleware.fetch_exchange_callback
-      def fetch_exchange(session, channel)
+      def fetch_exchange(_session, channel)
         channel.exchanges[exchange_name] || bunny_exchange(channel)
       end
 

@@ -15,8 +15,6 @@ module ContextRequestMiddleware
       if valid_sample?(request)
         response(status, header, body)
         @context = context(status, header, body, request)
-        @data[:request_context] = @context[:context_id] \
-          if @context && @context[:context_id]
         push
       end
       [status, header, body]
@@ -52,7 +50,10 @@ module ContextRequestMiddleware
 
     # checks if this request changed the context
     def context(status, header, body, request)
-      context_retriever(request)&.call(status, header, body)
+      @context = context_retriever(request)&.call(status, header, body)
+      @data[:request_context] = @context[:context_id] \
+        if @context && @context[:context_id]
+      @context
     end
 
     # retrieves the context of the current request
