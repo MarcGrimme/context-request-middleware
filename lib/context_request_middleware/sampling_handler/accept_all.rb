@@ -4,11 +4,7 @@ module ContextRequestMiddleware
   module SamplingHandler
     # Simple sampling handler that samples every request.
     class AcceptAll
-      def initialize(request)
-        @request = request
-      end
-
-      def valid?
+      def valid?(_request)
         true
       end
     end

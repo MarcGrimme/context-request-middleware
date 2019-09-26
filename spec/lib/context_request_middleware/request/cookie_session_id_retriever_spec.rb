@@ -7,22 +7,27 @@ module ContextRequestMiddleware
   module Request
     RSpec.describe CookieSessionIdRetriever do
       describe '#call' do
-        it do
-          env = Rack::MockRequest
-                .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain',
-                                       'HTTP_X_REQUEST_START' => Time.now.to_f,
-                                       'rack.request.cookie_hash' =>
-                       { '_session_id' => '9bc829f0119b1f1647359ece68dc7b28' })
-          subject = described_class.new(Rack::Request.new(env))
-          expect(subject.call).to eq '9bc829f0119b1f1647359ece68dc7b28'
-        end
+        subject(:retreiver) { described_class.new(request) }
 
-        it do
-          env = Rack::MockRequest
-                .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain',
-                                       'HTTP_X_REQUEST_START' => Time.now.to_f)
-          subject = described_class.new(Rack::Request.new(env))
-          expect(subject.call).to be_nil
+        let(:sid) { RackSessionCookie.generate_sid }
+        let(:env) do
+          Rack::MockRequest
+            .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain')
+        end
+        let(:request) { Rack::Request.new(env) }
+        context 'with cookie' do
+          before do
+            request.env['HTTP_COOKIE'] =
+              Rack::Utils.add_cookie_to_header(nil, '_session_id', sid)
+          end
+          it do
+            expect(subject.call).to eq sid
+          end
+        end
+        context 'without cookie' do
+          it do
+            expect(subject.call).to be_nil
+          end
         end
       end
     end

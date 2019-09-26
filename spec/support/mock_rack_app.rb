@@ -14,12 +14,10 @@ class MockRackAppWithSession
     @sid = sid
   end
 
-  def call(env)
-    req = Rack::Request.new(env)
+  def call(_env)
     res = Rack::Response.new(['OK'], 200, 'Content-Type' => 'text/plain')
-    generate_session(req, @sid)
 
-    set_cookie_in_response(res, req)
+    Rack::Utils.set_cookie_header!(res.header, '_session_id', @sid) if @sid
     res.finish
     [res.status, res.header, res.body]
   end

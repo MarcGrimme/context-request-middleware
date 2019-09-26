@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'context_request_middleware/request'
+
 module ContextRequestMiddleware
   module Request
     # Class for retrieving the session if set via rack cookie.
@@ -8,18 +10,13 @@ module ContextRequestMiddleware
     class CookieSessionIdRetriever
       include ActiveSupport::Configurable
 
-      # Set the cookie session id that set's the cookie session.
-      # @default '_session_id'
-      config_accessor(:cookie_session_id_key, instance_accessor: false) do
-        '_session_id'
-      end
-
       def initialize(request)
         @request = request
       end
 
       def call
-        @request.cookies[CookieSessionIdRetriever.cookie_session_id_key]
+        Rack::Utils.parse_cookies(@request.env)['_session_id'] ||
+          (@request.env['action_dispatch.cookies'] || {})['_session_id']
       end
     end
   end

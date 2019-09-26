@@ -4,7 +4,7 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'context_request_middleware/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'session-tracking-middleware'
+  s.name        = 'context_request_middleware'
   s.version     = ContextRequestMiddleware::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Marc Grimme']
@@ -13,8 +13,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/marcgrimme/context-request-middleware'
   s.summary     = %(Middleware to track the different types of \
 requests and their contexts.)
-
-  s.rubyforge_project = 'context-request-middleware'
 
   s.add_runtime_dependency 'activesupport'
   s.add_runtime_dependency 'bunny'

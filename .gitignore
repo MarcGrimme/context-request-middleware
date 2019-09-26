@@ -1,6 +1,7 @@
 .rvmrc
 .bundle
 Gemfile.lock
+.byebug_history
 
 ## PROJECT::GENERAL
 rdoc

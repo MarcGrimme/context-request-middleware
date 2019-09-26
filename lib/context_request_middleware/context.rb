@@ -8,13 +8,13 @@ module ContextRequestMiddleware
   module Context
     extend self
 
-    def retriever_for_response(response, request)
+    def retriever_for_response(request)
       ContextRequestMiddleware
         .load_class_from_name(
           ContextRequestMiddleware.context_retriever,
           ContextRequestMiddleware::Context.to_s,
           ContextRequestMiddleware.context_retriever_version
-        )&.new(request, response)
+        )&.new(request)
     end
   end
 end

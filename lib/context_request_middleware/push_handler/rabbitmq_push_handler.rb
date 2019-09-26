@@ -8,7 +8,7 @@ module ContextRequestMiddleware
     # PushHandler that pusblishes the data given to a RabbitMQ exchange.
     # If the exchange is not existant it will be created. The session is
     # taken from the session_pool.
-    class RabbitMQPushHandler < Base
+    class RabbitmqPushHandler < Base
       # :nodoc:
       class ConfirmationFailed < StandardError
         def initialize(channel, nacked, unconfirmed)
@@ -47,14 +47,14 @@ module ContextRequestMiddleware
       # it does not exist.
       # @data a hash representing the data to be published as json.
       # @options options to be passed to the publish to the exchange.
-      def push(data, **options)
+      def push(data, options)
         @session_pool.with do |session|
           session.start
           channel = session.create_channel
           channel.confirm_select
 
-          exchange = fetch_exchange(channel)
-          exchange.publish(data.to_json, options)
+          exchange = fetch_exchange(session, channel)
+          exchange.publish(data.to_json, **options)
 
           wait_for_confirms(channel)
           channel.close
@@ -78,7 +78,8 @@ module ContextRequestMiddleware
 
       # return the channel if a channel is already there otherwise create a new
       # exchange with the predefined settings.
-      def fetch_exchange(channel)
+      # Can be overwriten by ContextRequestMiddleware.fetch_exchange_callback
+      def fetch_exchange(session, channel)
         channel.exchanges[exchange_name] || bunny_exchange(channel)
       end
 
@@ -92,7 +93,7 @@ module ContextRequestMiddleware
       end
 
       def exchange_type
-        @config.fetch(:exchange_type, '')
+        @config.fetch(:exchange_type, 'topic')
       end
 
       def exchange_options

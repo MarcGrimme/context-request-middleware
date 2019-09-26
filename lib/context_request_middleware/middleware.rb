@@ -9,13 +9,15 @@ module ContextRequestMiddleware
     end
 
     def call(env)
-      request = Rack::Request.new(env)
+      request = ContextRequestMiddleware.request_class.new(env)
       request(request) if valid_sample?(request)
       status, header, body = @app.call(env)
       if valid_sample?(request)
         response(status, header, body)
-        push context(status, header, body, request)
-        push @data
+        @context = context(status, header, body, request)
+        @data[:request_context] = @context[:context_id] \
+          if @context && @context[:context_id]
+        push
       end
       [status, header, body]
     end
@@ -25,6 +27,7 @@ module ContextRequestMiddleware
     def request(request)
       request_data(request)
       others_data(request)
+      @data
     end
 
     def request_data(request)
@@ -39,7 +42,6 @@ module ContextRequestMiddleware
     end
 
     def others_data(request)
-      @data[:app_id] = ContextRequestMiddleware.app_id
       @data[:source] = source(request)
       @data[:host] = request.host
     end
@@ -48,23 +50,9 @@ module ContextRequestMiddleware
       @data[:request_status] = status
     end
 
-    def push(data)
-      (@push_handler ||= PushHandler.from_middleware)&.push(data)
-    end
-
-    def valid_sample?(request)
-      handler = SamplingHandler.from_request(request)
-      if handler
-        handler.valid?
-      else
-        false
-      end
-    end
-
     # checks if this request changed the context
     def context(status, header, body, request)
-      response = Rack::Response.new(body, status, header)
-      context_retriever(response, request)&.call
+      context_retriever(request)&.call(status, header, body)
     end
 
     # retrieves the context of the current request
@@ -72,9 +60,40 @@ module ContextRequestMiddleware
       @request_context ||= Request.retriever_for_request(request)&.call
     end
 
-    def context_retriever(request, response)
+    def context_retriever(request)
       @context_retriever ||=
-        Context.retriever_for_response(response, request)
+        Context.retriever_for_response(request)
+    end
+
+    def push
+      return unless @data
+      return unless @data.any?
+
+      @push_handler ||= PushHandler.from_middleware
+      return unless @push_handler
+
+      @push_handler.push(@data, push_options(@data, 'request'))
+      return unless @context
+      return unless @context.any?
+
+      @push_handler.push(@context, push_options(@data, 'context'))
+      nil
+    end
+
+    def push_options(_data, type)
+      {
+        type: type,
+        message_id: SecureRandom.uuid
+      }
+    end
+
+    def valid_sample?(request)
+      @sample_handler ||= SamplingHandler.from_request
+      if @sample_handler
+        @sample_handler.valid?(request)
+      else
+        false
+      end
     end
 
     def request_start_time(request)
@@ -89,8 +108,8 @@ module ContextRequestMiddleware
        ContextRequestMiddleware
         .select_request_headers(ContextRequestMiddleware.remote_ip_headers,
                                 request)) ||
-        request.get_header('action_dispatch.remote_ip') ||
-        request.get_header('HTTP_X_FORWARDED_HOST')
+        request.get_header('action_dispatch.remote_ip').to_s ||
+        request.get_header('HTTP_X_FORWARDED_HOST').to_s
     end
   end
 end

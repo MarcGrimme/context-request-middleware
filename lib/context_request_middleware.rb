@@ -8,16 +8,35 @@ require 'context_request_middleware/sampling_handler/accept_all'
 require 'active_support'
 require 'active_support/inflector'
 require 'rack'
+require 'securerandom'
 
 # :nodoc:
 module ContextRequestMiddleware
   include ActiveSupport::Configurable
 
+  # For older Rack Versions there is no method 'get_header' this
+  # Request class will provide that logic.
+  # :nocov:
+  config_accessor(:request_class, instance_accessor: false) do
+    if Rack.release[0].to_i < 2
+      # :nodoc:
+      class RackRequest < Rack::Request
+        def get_header(name)
+          @env[name]
+        end
+      end
+      RackRequest
+    else
+      Rack::Request
+    end
+  end
+  # :nocov:
+
   # Array to specify the headers supported to hold the request_id.
   # Defaults to the X_REQUEST_ID header.
   # @default ['HTTP_X_REQUEST_ID']
   config_accessor(:request_id_headers, instance_accessor: false) do
-    ['HTTP_X_REQUEST_ID']
+    ['HTTP_X_REQUEST_ID', 'action_dispatch.request_id']
   end
 
   # Array to specify the headers supported to hold the start time of the
@@ -81,7 +100,6 @@ module ContextRequestMiddleware
   end
   config_accessor(:sampling_handler_version, instance_accessor: false)
 
-  #
   # retrieves a class that is loaded from the root_pathname and
   # suffixed with both name and version.
   # @root_pathname: the root path to be prefixed.

@@ -6,7 +6,7 @@ require 'context_request_middleware/push_handler/rabbitmq_push_handler'
 
 module ContextRequestMiddleware
   module PushHandler
-    RSpec.describe RabbitMQPushHandler do
+    RSpec.describe RabbitmqPushHandler do
       let(:bunny_session) { double('bunny_session') }
       let(:bunny_channel) { double('bunny_channel') }
       let(:exchange_name) { 'exchange' }
@@ -14,21 +14,23 @@ module ContextRequestMiddleware
       let(:confirmed) { true }
 
       before do
-        expect(Bunny).to receive(:new).with(url, session_params)
-                                      .and_return(bunny_session)
-        expect(bunny_session).to receive(:start)
-        expect(bunny_session).to receive(:create_channel)
-          .and_return(bunny_channel)
-        expect(bunny_channel).to receive(:confirm_select)
-        expect(bunny_channel).to receive(:exchanges)
-          .and_return(exchange_name => exchange)
-        expect(bunny_channel).to receive(:wait_for_confirms)
-          .and_return(confirmed)
-        allow(bunny_channel).to receive(:close)
         expect(exchange).to receive(:publish)
       end
 
       describe '#push' do
+        before do
+          expect(Bunny).to receive(:new).with(url, session_params)
+                                        .and_return(bunny_session)
+          expect(bunny_session).to receive(:start)
+          expect(bunny_session).to receive(:create_channel)
+            .and_return(bunny_channel)
+          expect(bunny_channel).to receive(:confirm_select)
+          expect(bunny_channel).to receive(:exchanges)
+            .and_return(exchange_name => exchange)
+          expect(bunny_channel).to receive(:wait_for_confirms)
+            .and_return(confirmed)
+          allow(bunny_channel).to receive(:close)
+        end
         context 'with minimum config' do
           let(:poolsize) { 1 }
           let(:url) { nil }
@@ -38,7 +40,7 @@ module ContextRequestMiddleware
               heartbeat: heartbeat }
           end
           subject { described_class.new(exchange_name: exchange_name) }
-          it { expect(subject.push({})).to be_nil }
+          it { expect(subject.push({}, {})).to be_nil }
         end
 
         context 'with complete config' do
@@ -64,7 +66,7 @@ module ContextRequestMiddleware
               .with(bunny_channel, 'type', 'other_exchange', opt1: 'opt1')
               .and_return(exchange)
           end
-          it { expect(subject.push({})).to be_nil }
+          it { expect(subject.push({}, {})).to be_nil }
         end
 
         context 'with network error' do
@@ -82,9 +84,10 @@ module ContextRequestMiddleware
             expect(bunny_channel).to receive(:unconfirmed_set).and_return(10)
           end
           it do
-            expect { subject.push({}) }
+            expect { subject.push({}, {}) }
               .to raise_error(described_class::ConfirmationFailed,
-                              'Message confirmation on the exchange exchange has failed(10/10).')
+                              'Message confirmation on the exchange exchange'\
+                              ' has failed(10/10).')
           end
         end
       end
