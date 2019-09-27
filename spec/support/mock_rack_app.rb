@@ -9,7 +9,6 @@ class MockRackApp
 end
 
 class MockRackAppWithSession
-  include RackSessionCookie
   def initialize(sid)
     @sid = sid
   end
