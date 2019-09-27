@@ -1,18 +1,18 @@
-# SessionTrackingMiddleware
+# ContextRequestTrackingMiddleware
 
-[![Gem Version](https://badge.fury.io/rb/session-tracking-middleware.svg)](https://badge.fury.io/rb/session-tracking-middleware)
-[![Build Status](https://api.travis-ci.org/MarcGrimme/session-tracking-middleware.svg?branch=master)](https://secure.travis-ci.org/MarcGrimme/session-tracking-middleware)
-[![Depfu](https://badges.depfu.com/badges/48a6c1c7c649f62eede6ffa2be843180/count.svg)](https://depfu.com/github/MarcGrimme/session-tracking-middleware?project_id=6900)
-[![Coverage](https://marcgrimme.github.io/session-tracking-middleware/badges/coverage_badge_total.svg)](https://marcgrimme.github.io/session-tracking-middleware/coverage/index.html)
-[![RubyCritic](https://marcgrimme.github.io/session-tracking-middleware/badges/rubycritic_badge_score.svg)](https://marcgrimme.github.io/session-tracking-middleware/tmp/rubycritic/overview.html)
+[![Gem Version](https://badge.fury.io/rb/context-request-middleware.svg)](https://badge.fury.io/rb/context-request-middleware)
+[![Build Status](https://api.travis-ci.org/MarcGrimme/context-request-middleware.svg?branch=master)](https://secure.travis-ci.org/MarcGrimme/context-request-middleware)
+[![Depfu](https://badges.depfu.com/badges/bf5a14e4ca8ea517e20cb7e2b5cdcbfd/count.svg)](https://depfu.com/github/MarcGrimme/context-request-subscriber?project_id=9486)
+[![Coverage](https://marcgrimme.github.io/context-request-middleware/badges/coverage_badge_total.svg)](https://marcgrimme.github.io/context-request-middleware/coverage/index.html)
+[![RubyCritic](https://marcgrimme.github.io/context-request-middleware/badges/rubycritic_badge_score.svg)](https://marcgrimme.github.io/context-request-middleware/tmp/rubycritic/overview.html)
 
-*SessionTrackingMiddleware* is a rack middleware that can ..
+*ContextRequestTrackingMiddleware* is a rack middleware that can ..
 
 ## Installation
 
 ```
 # In your gemfile
-gem 'session-tracking-middleware'
+gem 'context-request-middleware'
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/marcgrimme/session-tracking-middleware/fork )
+1. Fork it ( https://github.com/marcgrimme/context-request-middleware/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
