@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
-require 'context_request_middleware/railtie' if defined?(Rails)
-require 'context_request_middleware/sampling_handler'
-require 'context_request_middleware/middleware'
-require 'context_request_middleware/push_handler'
-require 'context_request_middleware/sampling_handler/accept_all'
 require 'active_support'
 require 'active_support/inflector'
 require 'rack'
 require 'securerandom'
+
+require 'context_request_middleware/railtie' if defined?(Rails)
+require 'context_request_middleware/sampling_handler'
+require 'context_request_middleware/middleware'
+require 'context_request_middleware/request'
+require 'context_request_middleware/context'
+require 'context_request_middleware/push_handler'
+require 'context_request_middleware/sampling_handler/accept_all'
 
 # :nodoc:
 module ContextRequestMiddleware

@@ -2,8 +2,6 @@
 
 require 'spec_helper'
 
-require 'context_request_middleware/push_handler/rabbitmq_push_handler'
-
 module ContextRequestMiddleware
   module PushHandler
     RSpec.describe RabbitmqPushHandler do
