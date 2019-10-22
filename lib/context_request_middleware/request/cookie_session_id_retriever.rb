@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'context_request_middleware/request'
-
 module ContextRequestMiddleware
   module Request
     # Class for retrieving the session if set via rack cookie.

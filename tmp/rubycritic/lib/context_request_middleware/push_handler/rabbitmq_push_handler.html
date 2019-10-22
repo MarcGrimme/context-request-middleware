@@ -44,7 +44,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-09-26 17:15:48 +0200'>2019-09-26 17:15:48 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-10-22 07:00:11 +0200'>2019-10-22 07:00:11 +0200</time>
         
       </span>
     </div>
@@ -65,12 +65,12 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">104</span><small> lines of codes</small></div>
+              <div><span class="metric">105</span><small> lines of codes</small></div>
               <div><span class="metric">10</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
               <div><span class="metric">5.2</span><small> complexity/method</small></div>
-              <div><span class="metric">3</span><small> churn</small></div>
+              <div><span class="metric">4</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
               <div><span class="metric">51.74</span><small> complexity</small></div>
@@ -98,6 +98,7 @@
 
 require &#39;bunny&#39;
 require &#39;connection_pool&#39;
+require &#39;context_request_middleware/push_handler/base&#39;
 
 module ContextRequestMiddleware
   module PushHandler
@@ -160,10 +161,10 @@ module ContextRequestMiddleware
       private
 
       def wait_for_confirms(channel)
-        return if channel.wait_for_confirms<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>ContextRequestMiddleware::PushHandler::RabbitmqPushHandler#wait_for_confirms refers to 'channel' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="rabbitmq_push_handler.html#L67" class="js-smell-location">0</a>                  <a href="rabbitmq_push_handler.html#L69" class="js-smell-location">1</a>                  <a href="rabbitmq_push_handler.html#L70" class="js-smell-location">2</a>                  </div>  </li></ol>
+        return if channel.wait_for_confirms<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>ContextRequestMiddleware::PushHandler::RabbitmqPushHandler#wait_for_confirms refers to 'channel' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="rabbitmq_push_handler.html#L68" class="js-smell-location">0</a>                  <a href="rabbitmq_push_handler.html#L70" class="js-smell-location">1</a>                  <a href="rabbitmq_push_handler.html#L71" class="js-smell-location">2</a>                  </div>  </li></ol>
 
-        raise ConfirmationFailed.new(exchange_name, channel.nacked_set,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>ContextRequestMiddleware::PushHandler::RabbitmqPushHandler#wait_for_confirms refers to 'channel' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="rabbitmq_push_handler.html#L67" class="js-smell-location">0</a>                  <a href="rabbitmq_push_handler.html#L69" class="js-smell-location">1</a>                  <a href="rabbitmq_push_handler.html#L70" class="js-smell-location">2</a>                  </div>  </li></ol>
-                                     channel.unconfirmed_set)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>ContextRequestMiddleware::PushHandler::RabbitmqPushHandler#wait_for_confirms refers to 'channel' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="rabbitmq_push_handler.html#L67" class="js-smell-location">0</a>                  <a href="rabbitmq_push_handler.html#L69" class="js-smell-location">1</a>                  <a href="rabbitmq_push_handler.html#L70" class="js-smell-location">2</a>                  </div>  </li></ol>
+        raise ConfirmationFailed.new(exchange_name, channel.nacked_set,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>ContextRequestMiddleware::PushHandler::RabbitmqPushHandler#wait_for_confirms refers to 'channel' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="rabbitmq_push_handler.html#L68" class="js-smell-location">0</a>                  <a href="rabbitmq_push_handler.html#L70" class="js-smell-location">1</a>                  <a href="rabbitmq_push_handler.html#L71" class="js-smell-location">2</a>                  </div>  </li></ol>
+                                     channel.unconfirmed_set)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>ContextRequestMiddleware::PushHandler::RabbitmqPushHandler#wait_for_confirms refers to 'channel' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="rabbitmq_push_handler.html#L68" class="js-smell-location">0</a>                  <a href="rabbitmq_push_handler.html#L70" class="js-smell-location">1</a>                  <a href="rabbitmq_push_handler.html#L71" class="js-smell-location">2</a>                  </div>  </li></ol>
       end
 
       def config_clean

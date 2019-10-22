@@ -44,7 +44,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-09-26 17:13:23 +0200'>2019-09-26 17:13:23 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-10-22 07:00:11 +0200'>2019-10-22 07:00:11 +0200</time>
         
       </span>
     </div>
@@ -65,15 +65,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">71</span><small> lines of codes</small></div>
+              <div><span class="metric">69</span><small> lines of codes</small></div>
               <div><span class="metric">10</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">4.7</span><small> complexity/method</small></div>
-              <div><span class="metric">2</span><small> churn</small></div>
+              <div><span class="metric">4.3</span><small> complexity/method</small></div>
+              <div><span class="metric">3</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">46.59</span><small> complexity</small></div>
+              <div><span class="metric">42.94</span><small> complexity</small></div>
               <div><span class="metric">18</span><small> duplications</small></div>
             </div>
           </div>
@@ -95,8 +95,6 @@
     </div>
 
     <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
-
-require &#39;context_request_middleware/context&#39;
 
 module ContextRequestMiddleware
   module Context
@@ -150,9 +148,9 @@ module ContextRequestMiddleware
                         set_cookie_header.match(/_session_id=([^\;]+)/)[1]
       end
 
-      def req_cookie_session_id<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flay/" target="_blank"><b>DuplicateCode</b></a>        </span>      </div>      <span>Similar code found in 2 nodes</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L57" class="js-smell-location">0</a>                  <a href="../request/cookie_session_id_retriever.html#L17" class="js-smell-location">1</a>                  </div>  </li></ol>
-        Rack::Utils.parse_cookies(@request.env)[&#39;_session_id&#39;] ||<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#req_cookie_session_id calls '@request.env' 2 times</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L58" class="js-smell-location">0</a>                  <a href="cookie_session_retriever.html#L59" class="js-smell-location">1</a>                  </div>  </li></ol>
-          (@request.env[&#39;action_dispatch.cookies&#39;] || {})[&#39;_session_id&#39;]<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#req_cookie_session_id calls '@request.env' 2 times</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L58" class="js-smell-location">0</a>                  <a href="cookie_session_retriever.html#L59" class="js-smell-location">1</a>                  </div>  </li></ol>
+      def req_cookie_session_id<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flay/" target="_blank"><b>DuplicateCode</b></a>        </span>      </div>      <span>Similar code found in 2 nodes</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L55" class="js-smell-location">0</a>                  <a href="../request/cookie_session_id_retriever.html#L15" class="js-smell-location">1</a>                  </div>  </li></ol>
+        Rack::Utils.parse_cookies(@request.env)[&#39;_session_id&#39;] ||<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#req_cookie_session_id calls '@request.env' 2 times</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L56" class="js-smell-location">0</a>                  <a href="cookie_session_retriever.html#L57" class="js-smell-location">1</a>                  </div>  </li></ol>
+          (@request.env[&#39;action_dispatch.cookies&#39;] || {})[&#39;_session_id&#39;]<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#req_cookie_session_id calls '@request.env' 2 times</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L56" class="js-smell-location">0</a>                  <a href="cookie_session_retriever.html#L57" class="js-smell-location">1</a>                  </div>  </li></ol>
       end
 
       def set_cookie_header
