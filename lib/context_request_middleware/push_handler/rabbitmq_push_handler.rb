@@ -2,6 +2,7 @@
 
 require 'bunny'
 require 'connection_pool'
+require 'context_request_middleware/push_handler/base'
 
 module ContextRequestMiddleware
   module PushHandler

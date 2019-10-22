@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'context_request_middleware/request/cookie_session_id_retriever'
 
 module TestLc
   module TestLc

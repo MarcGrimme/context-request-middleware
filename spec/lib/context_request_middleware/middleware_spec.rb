@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'context_request_middleware/request'
-require 'context_request_middleware/context'
 
 module ContextRequestMiddleware
   RSpec.describe Middleware do
