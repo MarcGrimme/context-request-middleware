@@ -2,11 +2,13 @@
 
 module ContextRequestMiddleware
   module Context
+    # HTTP_COOKIE = 'HTTP_COOKIE'
     # Class for retrieving the session if set via rack cookie.
     # This requires the session and more data to be stored in
     # '_session_id' cookie key.
     class CookieSessionRetriever
       include ActiveSupport::Configurable
+      include ContextRequestMiddleware::Cookie
 
       HTTP_HEADER = 'Set-Cookie'
 
@@ -53,8 +55,7 @@ module ContextRequestMiddleware
       end
 
       def req_cookie_session_id
-        Rack::Utils.parse_cookies(@request.env)['_session_id'] ||
-          (@request.env['action_dispatch.cookies'] || {})['_session_id']
+        session
       end
 
       def set_cookie_header
