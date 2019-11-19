@@ -2,7 +2,6 @@
 
 module ContextRequestMiddleware
   module Context
-    # HTTP_COOKIE = 'HTTP_COOKIE'
     # Class for retrieving the session if set via rack cookie.
     # This requires the session and more data to be stored in
     # '_session_id' cookie key.
@@ -46,7 +45,7 @@ module ContextRequestMiddleware
       end
 
       def new_session_id?
-        session_id && session_id != req_cookie_session_id
+        session_id && session_id != request_cookie_session_id
       end
 
       def session_id
@@ -54,8 +53,8 @@ module ContextRequestMiddleware
                         set_cookie_header.match(/_session_id=([^\;]+)/)[1]
       end
 
-      def req_cookie_session_id
-        session
+      def request_cookie_session_id
+        cookie_session_id(@request)
       end
 
       def set_cookie_header

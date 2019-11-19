@@ -7,18 +7,17 @@ module ContextRequestMiddleware
     HTTP_COOKIE = 'HTTP_COOKIE' if Rack.release < '2.0.0'
 
     # :nocov:
-    def session
+    def cookie_session_id(request)
       if Rack.release < '2.0.0'
-        parse_cookies(@request.env)['_session_id'] ||
-          (@request.env['action_dispatch.cookies'] || {})['_session_id']
+        parse_cookies(request.env)['_session_id'] ||
+          (request.env['action_dispatch.cookies'] || {})['_session_id']
       else
-        Rack::Utils.parse_cookies(@request.env)['_session_id'] ||
-          (@request.env['action_dispatch.cookies'] || {})['_session_id']
+        Rack::Utils.parse_cookies(request.env)['_session_id'] ||
+          (request.env['action_dispatch.cookies'] || {})['_session_id']
       end
     end
 
     # :nocov:
-
     if Rack.release < '2.0.0'
       # :nocov:
       def parse_cookies(env)
