@@ -7,6 +7,7 @@ module ContextRequestMiddleware
     # '_session_id' cookie key.
     class CookieSessionRetriever
       include ActiveSupport::Configurable
+      include ContextRequestMiddleware::Cookie
 
       HTTP_HEADER = 'Set-Cookie'
 
@@ -44,7 +45,7 @@ module ContextRequestMiddleware
       end
 
       def new_session_id?
-        session_id && session_id != req_cookie_session_id
+        session_id && session_id != request_cookie_session_id
       end
 
       def session_id
@@ -52,9 +53,8 @@ module ContextRequestMiddleware
                         set_cookie_header.match(/_session_id=([^\;]+)/)[1]
       end
 
-      def req_cookie_session_id
-        Rack::Utils.parse_cookies(@request.env)['_session_id'] ||
-          (@request.env['action_dispatch.cookies'] || {})['_session_id']
+      def request_cookie_session_id
+        cookie_session_id(@request)
       end
 
       def set_cookie_header

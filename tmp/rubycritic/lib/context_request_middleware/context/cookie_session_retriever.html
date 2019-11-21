@@ -33,6 +33,9 @@
           <li class="sidebar-item">
             <a href="../../../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
           </li>
+          <li class="sidebar-item">
+            <a href="../../../simple_cov_index.html" class="project-nav-item coverage-index-nav"><i class="fa fa-umbrella"></i>Coverage</a>
+          </li>
         </ul>
       </aside>
       <!-- /#sidebar-wrapper -->
@@ -44,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-10-22 07:00:11 +0200'>2019-10-22 07:00:11 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-11-21 16:25:51 +0200'>2019-11-21 16:25:51 +0200</time>
         
       </span>
     </div>
@@ -59,8 +62,8 @@
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-1">
-            <div class="rating b big">
-              B
+            <div class="rating a big">
+              A
             </div>
           </div>
           <div class="code-statistics col-md-11">
@@ -69,12 +72,12 @@
               <div><span class="metric">10</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">4.3</span><small> complexity/method</small></div>
-              <div><span class="metric">3</span><small> churn</small></div>
+              <div><span class="metric">3.6</span><small> complexity/method</small></div>
+              <div><span class="metric">4</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">42.94</span><small> complexity</small></div>
-              <div><span class="metric">18</span><small> duplications</small></div>
+              <div><span class="metric">35.61</span><small> complexity</small></div>
+              <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
         </div>
@@ -85,7 +88,7 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                5
+                3
                 smells
               </a>
             </li>
@@ -103,6 +106,7 @@ module ContextRequestMiddleware
     # &#39;_session_id&#39; cookie key.
     class CookieSessionRetriever<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever assumes too much for instance variable '@response'</span>          </div>  </li></ol>
       include ActiveSupport::Configurable
+      include ContextRequestMiddleware::Cookie
 
       HTTP_HEADER = &#39;Set-Cookie&#39;
 
@@ -140,7 +144,7 @@ module ContextRequestMiddleware
       end
 
       def new_session_id?
-        session_id &amp;&amp; session_id != req_cookie_session_id
+        session_id &amp;&amp; session_id != request_cookie_session_id
       end
 
       def session_id
@@ -148,9 +152,8 @@ module ContextRequestMiddleware
                         set_cookie_header.match(/_session_id=([^\;]+)/)[1]
       end
 
-      def req_cookie_session_id<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flay/" target="_blank"><b>DuplicateCode</b></a>        </span>      </div>      <span>Similar code found in 2 nodes</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L55" class="js-smell-location">0</a>                  <a href="../request/cookie_session_id_retriever.html#L15" class="js-smell-location">1</a>                  </div>  </li></ol>
-        Rack::Utils.parse_cookies(@request.env)[&#39;_session_id&#39;] ||<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#req_cookie_session_id calls '@request.env' 2 times</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L56" class="js-smell-location">0</a>                  <a href="cookie_session_retriever.html#L57" class="js-smell-location">1</a>                  </div>  </li></ol>
-          (@request.env[&#39;action_dispatch.cookies&#39;] || {})[&#39;_session_id&#39;]<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#req_cookie_session_id calls '@request.env' 2 times</span>              <span>Locations:</span>                  <a href="cookie_session_retriever.html#L56" class="js-smell-location">0</a>                  <a href="cookie_session_retriever.html#L57" class="js-smell-location">1</a>                  </div>  </li></ol>
+      def request_cookie_session_id
+        cookie_session_id(@request)
       end
 
       def set_cookie_header
