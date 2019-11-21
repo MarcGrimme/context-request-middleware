@@ -8,6 +8,7 @@ require 'securerandom'
 require 'context_request_middleware/railtie' if defined?(Rails)
 require 'context_request_middleware/sampling_handler'
 require 'context_request_middleware/middleware'
+require 'context_request_middleware/cookie'
 require 'context_request_middleware/request'
 require 'context_request_middleware/context'
 require 'context_request_middleware/push_handler'

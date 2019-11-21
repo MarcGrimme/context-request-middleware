@@ -7,14 +7,14 @@ module ContextRequestMiddleware
     # cookie key.
     class CookieSessionIdRetriever
       include ActiveSupport::Configurable
+      include ContextRequestMiddleware::Cookie
 
       def initialize(request)
         @request = request
       end
 
       def call
-        Rack::Utils.parse_cookies(@request.env)['_session_id'] ||
-          (@request.env['action_dispatch.cookies'] || {})['_session_id']
+        cookie_session_id(@request)
       end
     end
   end
