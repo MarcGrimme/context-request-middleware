@@ -85,7 +85,8 @@ module ContextRequestMiddleware
   config_accessor(:context_retriever_version, instance_accessor: false)
 
   # Extract the user id from Main application
-  # Set in Main App ENV['cookie_session.user_id'] = current_user.id usually in application_controller
+  # Set in Main App ENV['cookie_session.user_id'] = current_user.id
+  # usually done in application_controller
   # so it can be applied to the context
   # @default cookie_session.user_id
   config_accessor(:session_owner_id, instance_accessor: false) do
