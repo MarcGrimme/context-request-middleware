@@ -33,7 +33,7 @@ module ContextRequestMiddleware
       private
 
       def owner_id
-        from_env('cookie_session.user_id', 'unknown')
+        from_env(ContextRequestMiddleware.session_owner_id, 'unknown')
       end
 
       def context_status
