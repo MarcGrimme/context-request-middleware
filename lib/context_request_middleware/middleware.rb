@@ -101,7 +101,7 @@ module ContextRequestMiddleware
       ContextRequestMiddleware.select_request_headers(
         ContextRequestMiddleware.request_start_time_headers,
         request
-      ) || Time.now.to_f
+      ) || (defined?(Time.current) ? Time.current : Time.now).to_f
     end
 
     def source(request)
