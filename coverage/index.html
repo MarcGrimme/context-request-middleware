@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-11-21T14:26:55+00:00">2019-11-21T14:26:55+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-11-26T08:48:23+00:00">2019-11-26T08:48:23+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.34
+         2.32
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>12</b> files in total.
-    <b>231</b> relevant lines. 
-    <span class="green"><b>231</b> lines covered</span> and
+    <b>233</b> relevant lines. 
+    <span class="green"><b>233</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -53,11 +53,11 @@
       <tr>
         <td class="strong"><a href="#12b880f635c2c0a3ee6313f70b20d8376f5f7f70" class="src_link" title="lib/context_request_middleware.rb">lib/context_request_middleware.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>140</td>
-        <td>45</td>
-        <td>45</td>
+        <td>149</td>
+        <td>47</td>
+        <td>47</td>
         <td>0</td>
-        <td>2.6</td>
+        <td>2.5</td>
       </tr>
       
       <tr>
@@ -191,8 +191,8 @@
     <h3>lib/context_request_middleware.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>45</b> relevant lines. 
-      <span class="green"><b>45</b> lines covered</span> and
+      <b>47</b> relevant lines. 
+      <span class="green"><b>47</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -719,322 +719,376 @@
         <li class="never" data-hits="" data-linenumber="87">
           
           
-          <code class="ruby">  # Classname (small case) on how to push the data stored from the current</code>
+          <code class="ruby">  # Extract the user id from Main application</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">  # request.</code>
+          <code class="ruby">  # Set in Main App ENV[&#39;cookie_session.user_id&#39;] = current_user.id</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="89">
           
           
-          <code class="ruby">  # @default rabbitmq_push_handler which means it pushes to RabbitMQ</code>
+          <code class="ruby">  # usually done in application_controller</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="90">
+          
+          
+          <code class="ruby">  # so it can be applied to the context</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="91">
+          
+          
+          <code class="ruby">  # @default cookie_session.user_id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="92">
           <span class="hits">1</span>
           
-          <code class="ruby">  config_accessor(:push_handler, instance_accessor: false) do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="91">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    &#39;rabbitmq_push_handler&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="92">
-          
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">  config_accessor(:session_owner_id, instance_accessor: false) do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="93">
           <span class="hits">1</span>
           
-          <code class="ruby">  config_accessor(:push_handler_version, instance_accessor: false)</code>
+          <code class="ruby">    &#39;cookie_session.user_id&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
           
           
-          <code class="ruby">  # Configuration to configure the push_handler if required.</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
           
           
-          <code class="ruby">  # @default: {}</code>
+          <code class="ruby">  # Classname (small case) on how to push the data stored from the current</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="97">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="97">
           
-          <code class="ruby">  config_accessor(:push_handler_config, instance_accessor: false) { {} }</code>
+          
+          <code class="ruby">  # request.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="98">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  # @default rabbitmq_push_handler which means it pushes to RabbitMQ</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="99">
+        <li class="covered" data-hits="1" data-linenumber="99">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # Classname (small case) on how to detect if this request should be</code>
+          <code class="ruby">  config_accessor(:push_handler, instance_accessor: false) do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="100">
+        <li class="covered" data-hits="1" data-linenumber="100">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # sampled.</code>
+          <code class="ruby">    &#39;rabbitmq_push_handler&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="101">
           
           
-          <code class="ruby">  # @default accept_all which means all requests will be sampled.</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="102">
           <span class="hits">1</span>
           
-          <code class="ruby">  config_accessor(:sampling_handler, instance_accessor: false) do</code>
+          <code class="ruby">  config_accessor(:push_handler_version, instance_accessor: false)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="103">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="103">
           
-          <code class="ruby">    &#39;accept_all&#39;</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="104">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">  # Configuration to configure the push_handler if required.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="105">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="105">
           
-          <code class="ruby">  config_accessor(:sampling_handler_version, instance_accessor: false)</code>
+          
+          <code class="ruby">  # @default: {}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="106">
+        <li class="covered" data-hits="2" data-linenumber="106">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  config_accessor(:push_handler_config, instance_accessor: false) { {} }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="107">
           
           
-          <code class="ruby">  # retrieves a class that is loaded from the root_pathname and</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="108">
           
           
-          <code class="ruby">  # suffixed with both name and version.</code>
+          <code class="ruby">  # Classname (small case) on how to detect if this request should be</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="109">
           
           
-          <code class="ruby">  # @root_pathname: the root path to be prefixed.</code>
+          <code class="ruby">  # sampled.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="110">
           
           
-          <code class="ruby">  #       For example ContextRequestMiddleware::Request as string.</code>
+          <code class="ruby">  # @default accept_all which means all requests will be sampled.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="111">
+        <li class="covered" data-hits="1" data-linenumber="111">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # @name: the name of the class in small case seperated with . or _.</code>
+          <code class="ruby">  config_accessor(:sampling_handler, instance_accessor: false) do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="112">
+        <li class="covered" data-hits="1" data-linenumber="112">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #       For example session_id_retriever will yield to SessionIdretriever.</code>
+          <code class="ruby">    &#39;accept_all&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="113">
           
           
-          <code class="ruby">  # @version: if version is given it will be suffixed to the path.</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="114">
+        <li class="covered" data-hits="1" data-linenumber="114">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #       For example version=1 will yield {root_path}::V1.</code>
+          <code class="ruby">  config_accessor(:sampling_handler_version, instance_accessor: false)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="115">
           
           
-          <code class="ruby">  # @return a class if found otherwise nil.</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="116">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="116">
           
-          <code class="ruby">  def self.load_class_from_name(name, root_path_name, version = nil)</code>
+          
+          <code class="ruby">  # retrieves a class that is loaded from the root_pathname and</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="117">
-          <span class="hits">13</span>
+        <li class="never" data-hits="" data-linenumber="117">
           
-          <code class="ruby">    version = &quot;V#{version}&quot; if version</code>
+          
+          <code class="ruby">  # suffixed with both name and version.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="118">
           
           
-          <code class="ruby">    [root_path_name, version, name.tr(&#39;.&#39;, &#39;_&#39;).camelize].compact.join(&#39;::&#39;)</code>
+          <code class="ruby">  # @root_pathname: the root path to be prefixed.</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="119">
-          <span class="hits">13</span>
+        <li class="never" data-hits="" data-linenumber="119">
           
-          <code class="ruby">                                                         .constantize</code>
+          
+          <code class="ruby">  #       For example ContextRequestMiddleware::Request as string.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="120">
           
           
-          <code class="ruby">  rescue NameError</code>
+          <code class="ruby">  # @name: the name of the class in small case seperated with . or _.</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="121">
-          <span class="hits">4</span>
+        <li class="never" data-hits="" data-linenumber="121">
           
-          <code class="ruby">    nil</code>
+          
+          <code class="ruby">  #       For example session_id_retriever will yield to SessionIdretriever.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="122">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">  # @version: if version is given it will be suffixed to the path.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="123">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  #       For example version=1 will yield {root_path}::V1.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="124">
           
           
-          <code class="ruby">  #</code>
+          <code class="ruby">  # @return a class if found otherwise nil.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="125">
+        <li class="covered" data-hits="1" data-linenumber="125">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # Returns the first header found from the given array of headers in the</code>
+          <code class="ruby">  def self.load_class_from_name(name, root_path_name, version = nil)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="126">
+        <li class="covered" data-hits="13" data-linenumber="126">
+          <span class="hits">13</span>
           
-          
-          <code class="ruby">  # given request.</code>
+          <code class="ruby">    version = &quot;V#{version}&quot; if version</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="127">
           
           
-          <code class="ruby">  # @headres an array of headers to be looking for. Headers are specified full</code>
+          <code class="ruby">    [root_path_name, version, name.tr(&#39;.&#39;, &#39;_&#39;).camelize].compact.join(&#39;::&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="128">
+        <li class="covered" data-hits="13" data-linenumber="128">
+          <span class="hits">13</span>
           
-          
-          <code class="ruby">  #   as in the environment with HTTP_ prefixed and capital letters ...</code>
+          <code class="ruby">                                                         .constantize</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="129">
           
           
-          <code class="ruby">  # @request the Rack::Request holding the request (headers) as Hash.</code>
+          <code class="ruby">  rescue NameError</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="130">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="130">
+          <span class="hits">4</span>
           
-          <code class="ruby">  def self.select_request_headers(headers, request)</code>
+          <code class="ruby">    nil</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="131">
-          <span class="hits">8</span>
-          
-          <code class="ruby">    value = nil</code>
-        </li>
-      
-        <li class="covered" data-hits="8" data-linenumber="132">
-          <span class="hits">8</span>
-          
-          <code class="ruby">    headers.each do |header|</code>
-        </li>
-      
-        <li class="covered" data-hits="11" data-linenumber="133">
-          <span class="hits">11</span>
-          
-          <code class="ruby">      value = request.get_header(header)</code>
-        </li>
-      
-        <li class="covered" data-hits="11" data-linenumber="134">
-          <span class="hits">11</span>
-          
-          <code class="ruby">      break if value</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="135">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="8" data-linenumber="136">
-          <span class="hits">8</span>
-          
-          <code class="ruby">    value</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="137">
+        <li class="never" data-hits="" data-linenumber="131">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="138">
-          
-          
-          <code class="ruby">end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="139">
+        <li class="never" data-hits="" data-linenumber="132">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="140">
+        <li class="never" data-hits="" data-linenumber="133">
+          
+          
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="134">
+          
+          
+          <code class="ruby">  # Returns the first header found from the given array of headers in the</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="135">
+          
+          
+          <code class="ruby">  # given request.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="136">
+          
+          
+          <code class="ruby">  # @headres an array of headers to be looking for. Headers are specified full</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby">  #   as in the environment with HTTP_ prefixed and capital letters ...</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="138">
+          
+          
+          <code class="ruby">  # @request the Rack::Request holding the request (headers) as Hash.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="139">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.select_request_headers(headers, request)</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="140">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    value = nil</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="141">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    headers.each do |header|</code>
+        </li>
+      
+        <li class="covered" data-hits="11" data-linenumber="142">
+          <span class="hits">11</span>
+          
+          <code class="ruby">      value = request.get_header(header)</code>
+        </li>
+      
+        <li class="covered" data-hits="11" data-linenumber="143">
+          <span class="hits">11</span>
+          
+          <code class="ruby">      break if value</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="144">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="145">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    value</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="146">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="147">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="148">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="149">
           <span class="hits">1</span>
           
           <code class="ruby">$LOAD_PATH.unshift(File.join(File.dirname(__FILE__)))</code>
@@ -1411,7 +1465,7 @@
         <li class="covered" data-hits="4" data-linenumber="36">
           <span class="hits">4</span>
           
-          <code class="ruby">        from_env(&#39;cookie_session.user_id&#39;, &#39;unknown&#39;)</code>
+          <code class="ruby">        from_env(ContextRequestMiddleware.session_owner_id, &#39;unknown&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="37">
