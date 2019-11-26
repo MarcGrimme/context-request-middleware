@@ -84,6 +84,15 @@ module ContextRequestMiddleware
   end
   config_accessor(:context_retriever_version, instance_accessor: false)
 
+  # Extract the user id from Main application
+  # Set in Main App ENV['cookie_session.user_id'] = current_user.id
+  # usually done in application_controller
+  # so it can be applied to the context
+  # @default cookie_session.user_id
+  config_accessor(:session_owner_id, instance_accessor: false) do
+    'cookie_session.user_id'
+  end
+
   # Classname (small case) on how to push the data stored from the current
   # request.
   # @default rabbitmq_push_handler which means it pushes to RabbitMQ
