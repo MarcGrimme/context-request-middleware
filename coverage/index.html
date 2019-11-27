@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-11-26T08:48:23+00:00">2019-11-26T08:48:23+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-11-27T07:58:47+00:00">2019-11-27T07:58:47+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.32
+         3.03
        </span>
     </span> hits/line)
   </h2>
@@ -57,7 +57,7 @@
         <td>47</td>
         <td>47</td>
         <td>0</td>
-        <td>2.5</td>
+        <td>3.4</td>
       </tr>
       
       <tr>
@@ -67,7 +67,7 @@
         <td>6</td>
         <td>6</td>
         <td>0</td>
-        <td>1.2</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -77,7 +77,7 @@
         <td>36</td>
         <td>36</td>
         <td>0</td>
-        <td>3.6</td>
+        <td>4.0</td>
       </tr>
       
       <tr>
@@ -87,7 +87,7 @@
         <td>4</td>
         <td>4</td>
         <td>0</td>
-        <td>7.3</td>
+        <td>8.8</td>
       </tr>
       
       <tr>
@@ -97,7 +97,7 @@
         <td>60</td>
         <td>60</td>
         <td>0</td>
-        <td>2.0</td>
+        <td>3.5</td>
       </tr>
       
       <tr>
@@ -137,7 +137,7 @@
         <td>6</td>
         <td>6</td>
         <td>0</td>
-        <td>1.2</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -147,7 +147,7 @@
         <td>9</td>
         <td>9</td>
         <td>0</td>
-        <td>1.7</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
@@ -157,7 +157,7 @@
         <td>5</td>
         <td>5</td>
         <td>0</td>
-        <td>1.6</td>
+        <td>2.0</td>
       </tr>
       
       <tr>
@@ -167,7 +167,7 @@
         <td>5</td>
         <td>5</td>
         <td>0</td>
-        <td>1.6</td>
+        <td>2.4</td>
       </tr>
       
     </tbody>
@@ -950,8 +950,8 @@
           <code class="ruby">  def self.load_class_from_name(name, root_path_name, version = nil)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="126">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="19" data-linenumber="126">
+          <span class="hits">19</span>
           
           <code class="ruby">    version = &quot;V#{version}&quot; if version</code>
         </li>
@@ -962,8 +962,8 @@
           <code class="ruby">    [root_path_name, version, name.tr(&#39;.&#39;, &#39;_&#39;).camelize].compact.join(&#39;::&#39;)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="128">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="19" data-linenumber="128">
+          <span class="hits">19</span>
           
           <code class="ruby">                                                         .constantize</code>
         </li>
@@ -1034,26 +1034,26 @@
           <code class="ruby">  def self.select_request_headers(headers, request)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="140">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="12" data-linenumber="140">
+          <span class="hits">12</span>
           
           <code class="ruby">    value = nil</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="141">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="12" data-linenumber="141">
+          <span class="hits">12</span>
           
           <code class="ruby">    headers.each do |header|</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="142">
-          <span class="hits">11</span>
+        <li class="covered" data-hits="19" data-linenumber="142">
+          <span class="hits">19</span>
           
           <code class="ruby">      value = request.get_header(header)</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="143">
-          <span class="hits">11</span>
+        <li class="covered" data-hits="19" data-linenumber="143">
+          <span class="hits">19</span>
           
           <code class="ruby">      break if value</code>
         </li>
@@ -1064,8 +1064,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="145">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="12" data-linenumber="145">
+          <span class="hits">12</span>
           
           <code class="ruby">    value</code>
         </li>
@@ -1209,8 +1209,8 @@
           <code class="ruby">          ContextRequestMiddleware.context_retriever_version</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="17">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="17">
+          <span class="hits">4</span>
           
           <code class="ruby">        )&amp;.new(request)</code>
         </li>
@@ -1348,14 +1348,14 @@
           <code class="ruby">      def initialize(request)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="17">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="9" data-linenumber="17">
+          <span class="hits">9</span>
           
           <code class="ruby">        @request = request</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="18">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="9" data-linenumber="18">
+          <span class="hits">9</span>
           
           <code class="ruby">        @data = {}</code>
         </li>
@@ -1378,14 +1378,14 @@
           <code class="ruby">      def call(status, header, body)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="22">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="9" data-linenumber="22">
+          <span class="hits">9</span>
           
           <code class="ruby">        @response = Rack::Response.new(body, status, header)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="23">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="9" data-linenumber="23">
+          <span class="hits">9</span>
           
           <code class="ruby">        if new_session_id?</code>
         </li>
@@ -1426,8 +1426,8 @@
           <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="30">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="9" data-linenumber="30">
+          <span class="hits">9</span>
           
           <code class="ruby">        data</code>
         </li>
@@ -1534,8 +1534,8 @@
           <code class="ruby">      def new_session_id?</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="48">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="9" data-linenumber="48">
+          <span class="hits">9</span>
           
           <code class="ruby">        session_id &amp;&amp; session_id != request_cookie_session_id</code>
         </li>
@@ -1558,8 +1558,8 @@
           <code class="ruby">      def session_id</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="52">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="18" data-linenumber="52">
+          <span class="hits">18</span>
           
           <code class="ruby">        @session_id ||= set_cookie_header &amp;&amp;</code>
         </li>
@@ -1612,8 +1612,8 @@
           <code class="ruby">      def set_cookie_header</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="61">
-          <span class="hits">12</span>
+        <li class="covered" data-hits="14" data-linenumber="61">
+          <span class="hits">14</span>
           
           <code class="ruby">        @response.headers.fetch(HTTP_HEADER, nil)</code>
         </li>
@@ -1745,7 +1745,7 @@
           <code class="ruby">    def cookie_session_id(request)</code>
         </li>
       
-        <li class="skipped" data-hits="9" data-linenumber="11">
+        <li class="skipped" data-hits="11" data-linenumber="11">
           
           <span class="hits">skipped</span>
           <code class="ruby">      if Rack.release &lt; &#39;2.0.0&#39;</code>
@@ -1769,13 +1769,13 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="skipped" data-hits="9" data-linenumber="15">
+        <li class="skipped" data-hits="11" data-linenumber="15">
           
           <span class="hits">skipped</span>
           <code class="ruby">        Rack::Utils.parse_cookies(request.env)[&#39;_session_id&#39;] ||</code>
         </li>
       
-        <li class="skipped" data-hits="6" data-linenumber="16">
+        <li class="skipped" data-hits="8" data-linenumber="16">
           
           <span class="hits">skipped</span>
           <code class="ruby">          (request.env[&#39;action_dispatch.cookies&#39;] || {})[&#39;_session_id&#39;]</code>
@@ -1956,14 +1956,14 @@
           <code class="ruby">    def initialize(app)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="7">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="7">
+          <span class="hits">5</span>
           
           <code class="ruby">      @app = app</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="8">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="8">
+          <span class="hits">5</span>
           
           <code class="ruby">      @data = {}</code>
         </li>
@@ -1986,44 +1986,44 @@
           <code class="ruby">    def call(env)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="12">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="12">
+          <span class="hits">5</span>
           
           <code class="ruby">      request = ContextRequestMiddleware.request_class.new(env)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="13">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="13">
+          <span class="hits">5</span>
           
           <code class="ruby">      request(request) if valid_sample?(request)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="14">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="14">
+          <span class="hits">5</span>
           
           <code class="ruby">      status, header, body = @app.call(env)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="15">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="15">
+          <span class="hits">5</span>
           
           <code class="ruby">      if valid_sample?(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="16">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="16">
+          <span class="hits">4</span>
           
           <code class="ruby">        response(status, header, body)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="17">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="17">
+          <span class="hits">4</span>
           
           <code class="ruby">        @context = context(status, header, body, request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="18">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="18">
+          <span class="hits">4</span>
           
           <code class="ruby">        push</code>
         </li>
@@ -2034,8 +2034,8 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="20">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="20">
+          <span class="hits">5</span>
           
           <code class="ruby">      [status, header, body]</code>
         </li>
@@ -2070,20 +2070,20 @@
           <code class="ruby">    def request(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="26">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="26">
+          <span class="hits">4</span>
           
           <code class="ruby">      request_data(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="27">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="27">
+          <span class="hits">4</span>
           
           <code class="ruby">      others_data(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="28">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="28">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data</code>
         </li>
@@ -2106,8 +2106,8 @@
           <code class="ruby">    def request_data(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="32">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="32">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:request_id] = ContextRequestMiddleware.select_request_headers(</code>
         </li>
@@ -2124,32 +2124,32 @@
           <code class="ruby">      )</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="35">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="35">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:request_context] = request_context(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="36">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="36">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:request_start_time] = request_start_time(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="37">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="37">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:request_method] = request.request_method</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="38">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="38">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:request_params] = request.params</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="39">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="39">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:request_path] = request.path</code>
         </li>
@@ -2172,14 +2172,14 @@
           <code class="ruby">    def others_data(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="43">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="43">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:source] = source(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="44">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="44">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:host] = request.host</code>
         </li>
@@ -2202,8 +2202,8 @@
           <code class="ruby">    def response(status, _headers, _response)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="48">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="48">
+          <span class="hits">4</span>
           
           <code class="ruby">      @data[:request_status] = status</code>
         </li>
@@ -2232,8 +2232,8 @@
           <code class="ruby">    def context(status, header, body, request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="53">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="53">
+          <span class="hits">4</span>
           
           <code class="ruby">      @context = context_retriever(request)&amp;.call(status, header, body)</code>
         </li>
@@ -2244,14 +2244,14 @@
           <code class="ruby">      @data[:request_context] = @context[:context_id] \</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="55">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="55">
+          <span class="hits">4</span>
           
           <code class="ruby">        if @context &amp;&amp; @context[:context_id]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="56">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="56">
+          <span class="hits">4</span>
           
           <code class="ruby">      @context</code>
         </li>
@@ -2280,8 +2280,8 @@
           <code class="ruby">    def request_context(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="61">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="61">
+          <span class="hits">4</span>
           
           <code class="ruby">      @request_context ||= Request.retriever_for_request(request)&amp;.call</code>
         </li>
@@ -2304,8 +2304,8 @@
           <code class="ruby">    def context_retriever(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="65">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="65">
+          <span class="hits">4</span>
           
           <code class="ruby">      @context_retriever ||=</code>
         </li>
@@ -2334,14 +2334,14 @@
           <code class="ruby">    def push</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="70">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="70">
+          <span class="hits">4</span>
           
           <code class="ruby">      return unless @data</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="71">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="71">
+          <span class="hits">4</span>
           
           <code class="ruby">      return unless @data.any?</code>
         </li>
@@ -2352,14 +2352,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="73">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="73">
+          <span class="hits">4</span>
           
           <code class="ruby">      @push_handler ||= PushHandler.from_middleware</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="74">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="74">
+          <span class="hits">4</span>
           
           <code class="ruby">      return unless @push_handler</code>
         </li>
@@ -2370,20 +2370,20 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="76">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="76">
+          <span class="hits">4</span>
           
           <code class="ruby">      @push_handler.push(@data, push_options(@data, &#39;request&#39;))</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="77">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="77">
+          <span class="hits">4</span>
           
           <code class="ruby">      return unless @context</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="78">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="78">
+          <span class="hits">4</span>
           
           <code class="ruby">      return unless @context.any?</code>
         </li>
@@ -2424,8 +2424,8 @@
           <code class="ruby">    def push_options(_data, type)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="85">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="85">
+          <span class="hits">5</span>
           
           <code class="ruby">      {</code>
         </li>
@@ -2466,20 +2466,20 @@
           <code class="ruby">    def valid_sample?(request)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="92">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="10" data-linenumber="92">
+          <span class="hits">10</span>
           
           <code class="ruby">      @sample_handler ||= SamplingHandler.from_request</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="93">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="10" data-linenumber="93">
+          <span class="hits">10</span>
           
           <code class="ruby">      if @sample_handler</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="94">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="94">
+          <span class="hits">8</span>
           
           <code class="ruby">        @sample_handler.valid?(request)</code>
         </li>
@@ -2520,8 +2520,8 @@
           <code class="ruby">    def request_start_time(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="101">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="101">
+          
           
           <code class="ruby">      ContextRequestMiddleware.select_request_headers(</code>
         </li>
@@ -2538,10 +2538,10 @@
           <code class="ruby">        request</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="104">
+        <li class="covered" data-hits="4" data-linenumber="104">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">      )</code>
+          <code class="ruby">      ) || (defined?(Time.current) ? Time.current : Time.now).to_f</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="105">
@@ -2562,8 +2562,8 @@
           <code class="ruby">    def source(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="108">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="108">
+          <span class="hits">4</span>
           
           <code class="ruby">      (ContextRequestMiddleware.remote_ip_headers &amp;&amp;</code>
         </li>
@@ -2580,8 +2580,8 @@
           <code class="ruby">        .select_request_headers(ContextRequestMiddleware.remote_ip_headers,</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="111">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="111">
+          <span class="hits">4</span>
           
           <code class="ruby">                                request)) ||</code>
         </li>
@@ -3598,8 +3598,8 @@
           <code class="ruby">          ContextRequestMiddleware.request_context_retriever_version</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="17">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="17">
+          <span class="hits">4</span>
           
           <code class="ruby">        )&amp;.new(request)</code>
         </li>
@@ -3713,8 +3713,8 @@
           <code class="ruby">      def initialize(request)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="13">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="6" data-linenumber="13">
+          <span class="hits">6</span>
           
           <code class="ruby">        @request = request</code>
         </li>
@@ -3737,8 +3737,8 @@
           <code class="ruby">      def call</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="17">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="6" data-linenumber="17">
+          <span class="hits">6</span>
           
           <code class="ruby">        cookie_session_id(@request)</code>
         </li>
@@ -3858,8 +3858,8 @@
           <code class="ruby">                              ContextRequestMiddleware.sampling_handler_version)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="13">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="6" data-linenumber="13">
+          <span class="hits">6</span>
           
           <code class="ruby">      &amp;.new</code>
         </li>
@@ -3943,8 +3943,8 @@
           <code class="ruby">      def valid?(_request)</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="8">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="8">
+          <span class="hits">8</span>
           
           <code class="ruby">        true</code>
         </li>

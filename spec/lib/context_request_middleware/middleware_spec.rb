@@ -99,6 +99,64 @@ module ContextRequestMiddleware
           subject.call(env)
         end
       end
+
+      context 'with missing HTTP_X_REQUEST_START header' do
+        let(:app) { MockRackApp.new }
+        let(:env) do
+          Rack::MockRequest.env_for('/some/path',
+                                    'CONTENT_TYPE' => 'text/plain')
+        end
+
+        context 'and undefined Time.current method' do
+          let(:request_data) do
+            {
+              host: 'example.org',
+              request_context: nil,
+              request_id: nil,
+              request_method: 'GET',
+              request_path: '/some/path',
+              request_params: {},
+              request_start_time: Time.now.to_f,
+              request_status: 200,
+              source: ''
+            }
+          end
+
+          it do
+            expect(push_handler).to receive(:push)
+              .with(request_data, **request_options).and_return(nil)
+            subject.call(env)
+          end
+        end
+
+        context 'and available Time.current method' do
+          let(:current_time) { Time.at(1_574_782_410.9173372) }
+          let(:request_data) do
+            {
+              host: 'example.org',
+              request_context: nil,
+              request_id: nil,
+              request_method: 'GET',
+              request_path: '/some/path',
+              request_params: {},
+              request_start_time: current_time.to_f,
+              request_status: 200,
+              source: ''
+            }
+          end
+
+          before do
+            allow(Time).to receive(:current)
+              .and_return(current_time)
+          end
+
+          it do
+            expect(push_handler).to receive(:push)
+              .with(request_data, **request_options).and_return(nil)
+            subject.call(env)
+          end
+        end
+      end
     end
 
     context 'with no sample-handler' do

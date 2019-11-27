@@ -47,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-09-26 17:15:48 +0200'>2019-09-26 17:15:48 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-11-27 09:57:57 +0200'>2019-11-27 09:57:57 +0200</time>
         
       </span>
     </div>
@@ -72,11 +72,11 @@
               <div><span class="metric">14</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">4.3</span><small> complexity/method</small></div>
-              <div><span class="metric">3</span><small> churn</small></div>
+              <div><span class="metric">4.7</span><small> complexity/method</small></div>
+              <div><span class="metric">4</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">60.47</span><small> complexity</small></div>
+              <div><span class="metric">66.21</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -88,7 +88,7 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                16
+                17
                 smells
               </a>
             </li>
@@ -200,7 +200,7 @@ module ContextRequestMiddleware
       ContextRequestMiddleware.select_request_headers(
         ContextRequestMiddleware.request_start_time_headers,
         request
-      )
+      ) || (defined?(Time.current) ? Time.current : Time.now).to_f<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#request_start_time calls 'Time.current' 2 times</span>          </div>  </li></ol>
     end
 
     def source(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
