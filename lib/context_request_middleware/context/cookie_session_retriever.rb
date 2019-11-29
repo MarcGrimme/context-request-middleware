@@ -62,7 +62,7 @@ module ContextRequestMiddleware
       end
 
       def from_env(key, default = nil)
-        @request.env.fetch(key, default)
+        ENV.fetch(key, default)
       end
     end
   end

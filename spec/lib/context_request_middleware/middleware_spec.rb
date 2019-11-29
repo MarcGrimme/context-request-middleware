@@ -23,6 +23,7 @@ module ContextRequestMiddleware
       end
 
       before do
+        ENV['cookie_session.user_id'] = nil
         Timecop.freeze
         allow(ContextRequestMiddleware).to receive(:push_handler)
           .and_return(push_handler_name)
