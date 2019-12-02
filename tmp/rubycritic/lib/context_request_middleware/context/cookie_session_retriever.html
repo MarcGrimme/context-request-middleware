@@ -47,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-12-02 21:56:36 +0200'>2019-12-02 21:56:36 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-12-02 21:57:45 +0200'>2019-12-02 21:57:45 +0200</time>
         
       </span>
     </div>
@@ -68,15 +68,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">69</span><small> lines of codes</small></div>
-              <div><span class="metric">10</span><small> methods</small></div>
+              <div><span class="metric">76</span><small> lines of codes</small></div>
+              <div><span class="metric">11</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">3.6</span><small> complexity/method</small></div>
-              <div><span class="metric">6</span><small> churn</small></div>
+              <div><span class="metric">3.5</span><small> complexity/method</small></div>
+              <div><span class="metric">7</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">35.81</span><small> complexity</small></div>
+              <div><span class="metric">38.84</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -119,7 +119,7 @@ module ContextRequestMiddleware
 
       def call(status, header, body)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#call has approx 7 statements</span>          </div>  </li></ol>
         @response = Rack::Response.new(body, status, header)
-        if new_session_id?
+        if new_context?
           data[:context_id] = session_id
           data[:owner_id] = owner_id
           data[:context_status] = context_status
@@ -127,6 +127,10 @@ module ContextRequestMiddleware
           data[:app_id] = ContextRequestMiddleware.app_id
         end
         data
+      end
+
+      def new_context?
+        new_session_id &amp;&amp; new_session_id != request_cookie_session_id
       end
 
       private
@@ -143,13 +147,16 @@ module ContextRequestMiddleware
         &#39;session_cookie&#39;
       end
 
-      def new_session_id?
-        session_id &amp;&amp; session_id != request_cookie_session_id
+      def session_id
+        new_session_id || request_cookie_session_id
       end
 
-      def session_id
-        @session_id ||= set_cookie_header &amp;&amp;
-                        set_cookie_header.match(/_session_id=([^\;]+)/)[1]
+      def new_session_id
+        new_session = nil
+        session_id_header = set_cookie_header.match(/_session_id=([^\;]+)/) \
+            if set_cookie_header
+        new_session = session_id_header[1] if session_id_header
+        new_session
       end
 
       def request_cookie_session_id
