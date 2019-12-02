@@ -20,7 +20,7 @@ module ContextRequestMiddleware
 
       def call(status, header, body)
         @response = Rack::Response.new(body, status, header)
-        if new_session_id?
+        if new_context?
           data[:context_id] = session_id
           data[:owner_id] = owner_id
           data[:context_status] = context_status
@@ -28,6 +28,10 @@ module ContextRequestMiddleware
           data[:app_id] = ContextRequestMiddleware.app_id
         end
         data
+      end
+
+      def new_context?
+        new_session_id && new_session_id != request_cookie_session_id
       end
 
       private
@@ -44,13 +48,16 @@ module ContextRequestMiddleware
         'session_cookie'
       end
 
-      def new_session_id?
-        session_id && session_id != request_cookie_session_id
+      def session_id
+        new_session_id || request_cookie_session_id
       end
 
-      def session_id
-        @session_id ||= set_cookie_header &&
-                        set_cookie_header.match(/_session_id=([^\;]+)/)[1]
+      def new_session_id
+        new_session = nil
+        session_id_header = set_cookie_header.match(/_session_id=([^\;]+)/) \
+            if set_cookie_header
+        new_session = session_id_header[1] if session_id_header
+        new_session
       end
 
       def request_cookie_session_id

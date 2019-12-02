@@ -67,6 +67,8 @@ module ContextRequestMiddleware
     end
 
     def push
+      push_context
+
       return unless @data
       return unless @data.any?
 
@@ -74,11 +76,19 @@ module ContextRequestMiddleware
       return unless @push_handler
 
       @push_handler.push(@data, push_options(@data, 'request'))
+
+      nil
+    end
+
+    def push_context
+      return unless @context_retriever.new_context?
       return unless @context
       return unless @context.any?
 
+      @push_handler ||= PushHandler.from_middleware
+      return unless @push_handler
+
       @push_handler.push(@context, push_options(@data, 'context'))
-      nil
     end
 
     def push_options(_data, type)
