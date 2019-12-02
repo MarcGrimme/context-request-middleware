@@ -47,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-11-26 10:47:32 +0200'>2019-11-26 10:47:32 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-12-02 21:56:36 +0200'>2019-12-02 21:56:36 +0200</time>
         
       </span>
     </div>
@@ -72,11 +72,11 @@
               <div><span class="metric">10</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">3.7</span><small> complexity/method</small></div>
-              <div><span class="metric">5</span><small> churn</small></div>
+              <div><span class="metric">3.6</span><small> complexity/method</small></div>
+              <div><span class="metric">6</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">36.81</span><small> complexity</small></div>
+              <div><span class="metric">35.81</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -88,7 +88,7 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                3
+                4
                 smells
               </a>
             </li>
@@ -160,8 +160,8 @@ module ContextRequestMiddleware
         @response.headers.fetch(HTTP_HEADER, nil)
       end
 
-      def from_env(key, default = nil)
-        @request.env.fetch(key, default)
+      def from_env(key, default = nil)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#from_env doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+        ENV.fetch(key, default)
       end
     end
   end
