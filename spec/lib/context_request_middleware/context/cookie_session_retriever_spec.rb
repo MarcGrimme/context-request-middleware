@@ -47,7 +47,7 @@ module ContextRequestMiddleware
                 app_id: 'anonymous' }
             end
             before do
-              request.env['cookie_session.user_id'] = user_id
+              ENV['cookie_session.user_id'] = user_id
             end
 
             it { expect(subject.call(*response.to_a)).to eq data }
@@ -57,7 +57,7 @@ module ContextRequestMiddleware
             context 'with different sids' do
               let(:new_sid) { RackSessionCookie.generate_sid }
               before do
-                request.env['cookie_session.user_id'] = user_id
+                ENV['cookie_session.user_id'] = user_id
                 request.env['HTTP_COOKIE'] =
                   Rack::Utils.add_cookie_to_header(nil, '_session_id', new_sid)
               end
