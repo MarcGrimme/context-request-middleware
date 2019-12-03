@@ -47,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-11-26 10:47:32 +0200'>2019-11-26 10:47:32 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-12-03 20:46:03 +0200'>2019-12-03 20:46:03 +0200</time>
         
       </span>
     </div>
@@ -68,15 +68,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">149</span><small> lines of codes</small></div>
+              <div><span class="metric">158</span><small> lines of codes</small></div>
               <div><span class="metric">3</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">10.5</span><small> complexity/method</small></div>
-              <div><span class="metric">5</span><small> churn</small></div>
+              <div><span class="metric">10.9</span><small> complexity/method</small></div>
+              <div><span class="metric">6</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">31.65</span><small> complexity</small></div>
+              <div><span class="metric">32.75</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -190,6 +190,15 @@ module ContextRequestMiddleware<ol class="nocode errors smells">  <li>    <div c
   # @default cookie_session.user_id
   config_accessor(:session_owner_id, instance_accessor: false) do
     &#39;cookie_session.user_id&#39;
+  end
+
+  # Extract the context status from Main application
+  # Set in Main App ENV[&#39;cookie_session.context_status&#39;]
+  # usually done in application_controller
+  # so it can be applied to the context
+  # @default cookie_session.context_status
+  config_accessor(:context_status, instance_accessor: false) do
+    &#39;cookie_session.context_status&#39;
   end
 
   # Classname (small case) on how to push the data stored from the current
