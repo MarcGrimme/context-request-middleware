@@ -41,7 +41,7 @@ module ContextRequestMiddleware
       end
 
       def context_status
-        'unknown'
+        from_env(ContextRequestMiddleware.context_status, 'unknown')
       end
 
       def context_type
