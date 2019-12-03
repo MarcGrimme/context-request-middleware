@@ -93,6 +93,15 @@ module ContextRequestMiddleware
     'cookie_session.user_id'
   end
 
+  # Extract the context status from Main application
+  # Set in Main App ENV['cookie_session.context_status']
+  # usually done in application_controller
+  # so it can be applied to the context
+  # @default cookie_session.context_status
+  config_accessor(:context_status, instance_accessor: false) do
+    'cookie_session.context_status'
+  end
+
   # Classname (small case) on how to push the data stored from the current
   # request.
   # @default rabbitmq_push_handler which means it pushes to RabbitMQ
