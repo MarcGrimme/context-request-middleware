@@ -14,6 +14,7 @@ require 'context_request_middleware/context'
 require 'context_request_middleware/push_handler'
 require 'context_request_middleware/sampling_handler/accept_all'
 require 'context_request_middleware/error_logger'
+require 'context_request_middleware/parameter_filter'
 
 # :nodoc:
 module ContextRequestMiddleware
@@ -36,6 +37,31 @@ module ContextRequestMiddleware
     end
   end
   # :nocov:
+
+  # For older ActiveSupport versions there is no class 'ParameterFilter'
+  # ContextRequestMiddleware::ParameterFilter class will provide the logic.
+  # :nocov:
+  config_accessor(:parameter_filter_class, instance_accessor: false) do
+    if defined?(ActiveSupport::ParameterFilter)
+      ActiveSupport::ParameterFilter
+    else
+      ContextRequestMiddleware::ParameterFilter
+    end
+  end
+  # :nocov:
+
+  # Array to specify the parameters
+  # that need to be masked
+  # @default []
+  config_accessor(:parameter_filter_list, instance_accessor: false) do
+    []
+  end
+
+  # Mask to use when masking the parameters
+  # @default '[FILTERED]'
+  config_accessor(:parameter_filter_mask, instance_accessor: false) do
+    '[FILTERED]'
+  end
 
   # Array to specify the headers supported to hold the request_id.
   # Defaults to the X_REQUEST_ID header.
