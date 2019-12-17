@@ -17,6 +17,7 @@ requests and their contexts.)
   s.add_runtime_dependency 'activesupport'
   s.add_runtime_dependency 'bunny'
   s.add_runtime_dependency 'connection_pool'
+  s.add_runtime_dependency 'logger'
   s.add_development_dependency 'license_finder'
   s.add_development_dependency 'rack'
   s.add_development_dependency 'rake', '~> 13'
