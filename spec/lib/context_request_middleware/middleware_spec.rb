@@ -27,6 +27,8 @@ module ContextRequestMiddleware
         Timecop.freeze
         allow(ContextRequestMiddleware).to receive(:push_handler)
           .and_return(push_handler_name)
+        allow(ContextRequestMiddleware).to receive(:logger_tags)
+          .and_return('TEST_TAG')
         allow(ContextRequestMiddleware::PushHandler)
           .to receive(:from_middleware).and_return(push_handler)
         allow(SecureRandom).to receive(:uuid)
@@ -98,6 +100,14 @@ module ContextRequestMiddleware
           expect(push_handler).to receive(:push)
             .with(context_data, context_options).and_return(nil)
           subject.call(env)
+        end
+
+        it do
+          output = StringIO.new
+          Logger = Logger.new(output)
+          allow(push_handler).to receive(:push).and_raise(StandardError)
+          expect { subject.call(env) }.to_not raise_error
+          expect(output.string).to include '[TEST_TAG]'
         end
       end
 
