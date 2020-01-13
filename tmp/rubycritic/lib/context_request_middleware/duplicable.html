@@ -47,12 +47,12 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-09-26 17:13:23 +0200'>2019-09-26 17:13:23 +0200</time>
+          Updated <time class='js-timeago' datetime='2020-01-13 16:22:52 +0200'>2020-01-13 16:22:52 +0200</time>
         
       </span>
     </div>
     <div>
-      <h3><small>lib/context_request_middleware /</small> sampling_handler.rb</h3>
+      <h3><small>lib/context_request_middleware /</small> duplicable.rb</h3>
     </div>
   </div>
   <!--End Page Title -->
@@ -68,15 +68,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">16</span><small> lines of codes</small></div>
+              <div><span class="metric">12</span><small> lines of codes</small></div>
               <div><span class="metric">1</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">6.8</span><small> complexity/method</small></div>
-              <div><span class="metric">2</span><small> churn</small></div>
+              <div><span class="metric">3.0</span><small> complexity/method</small></div>
+              <div><span class="metric">1</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">6.8</span><small> complexity</small></div>
+              <div><span class="metric">2.97</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -88,8 +88,8 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                3
-                smells
+                0
+                smell
               </a>
             </li>
           </ul>
@@ -100,16 +100,12 @@
     <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
 
 module ContextRequestMiddleware
-  # :nodoc:
-  module SamplingHandler<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank"><b>IrresponsibleModule</b></a>        </span>      </div>      <span>ContextRequestMiddleware::SamplingHandler has no descriptive comment</span>          </div>  </li></ol>
-    extend self
+  # Duplicable module used by ParameterFilter module
+  module Duplicable
+    def self.check?(object)
+      return false if object.is_a?(Method) || object.is_a?(UnboundMethod)
 
-    def from_request<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::SamplingHandler#from_request doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
-      ContextRequestMiddleware<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ContextRequestMiddleware::SamplingHandler#from_request performs a nil-check</span>          </div>  </li></ol>
-        .load_class_from_name(ContextRequestMiddleware.sampling_handler,
-                              ContextRequestMiddleware::SamplingHandler.to_s,
-                              ContextRequestMiddleware.sampling_handler_version)
-      &amp;.new
+      true
     end
   end
 end

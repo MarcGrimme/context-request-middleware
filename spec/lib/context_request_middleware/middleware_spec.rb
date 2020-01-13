@@ -21,16 +21,29 @@ module ContextRequestMiddleware
           type: 'context'
         }
       end
+      let(:parameter_filter_list) do
+        [
+          /pass/,
+          'password',
+          :secret,
+          'private.key',
+          ->(k, v) do v.reverse! if /reversed/i.match?(k) end
+        ]
+      end
 
       before do
         ENV['cookie_session.user_id'] = nil
         Timecop.freeze
         allow(ContextRequestMiddleware).to receive(:push_handler)
           .and_return(push_handler_name)
+        allow(ContextRequestMiddleware).to receive(:logger_tags)
+          .and_return('TEST_TAG')
         allow(ContextRequestMiddleware::PushHandler)
           .to receive(:from_middleware).and_return(push_handler)
         allow(SecureRandom).to receive(:uuid)
           .and_return('79b0824a-3a8c-452f-abd7-fc4e94f80acf')
+        allow(ContextRequestMiddleware).to receive(:parameter_filter_list)
+          .and_return(parameter_filter_list)
       end
 
       context 'with empty context' do
@@ -68,7 +81,11 @@ module ContextRequestMiddleware
             .env_for('/some/path',
                      'CONTENT_TYPE' => 'text/plain',
                      'HTTP_X_REQUEST_START' => Time.now.to_f,
-                     :params => { 'param1' => 'param1' })
+                     :params => { 'param1' => 'param1',
+                                  'password' => '123456',
+                                  'key' => 'some_value',
+                                  'private' => { 'key' => 'abc' },
+                                  'reversed' => '123456' })
         end
         let(:request_data) do
           {
@@ -77,7 +94,11 @@ module ContextRequestMiddleware
             request_id: nil,
             request_method: 'GET',
             request_path: '/some/path',
-            request_params: { 'param1' => 'param1' },
+            request_params: { 'param1' => 'param1',
+                              'password' => '[FILTERED]',
+                              'key' => 'some_value',
+                              'private' => { 'key' => '[FILTERED]' },
+                              'reversed' => '654321' },
             request_start_time: Time.now.to_f,
             request_status: 200,
             source: ''
@@ -98,6 +119,14 @@ module ContextRequestMiddleware
           expect(push_handler).to receive(:push)
             .with(context_data, context_options).and_return(nil)
           subject.call(env)
+        end
+
+        it do
+          output = StringIO.new
+          Logger = Logger.new(output)
+          allow(push_handler).to receive(:push).and_raise(StandardError)
+          expect { subject.call(env) }.to_not raise_error
+          expect(output.string).to include '[TEST_TAG]'
         end
       end
 

@@ -47,12 +47,12 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-09-26 17:13:23 +0200'>2019-09-26 17:13:23 +0200</time>
+          Updated <time class='js-timeago' datetime='2019-12-20 08:16:19 +0200'>2019-12-20 08:16:19 +0200</time>
         
       </span>
     </div>
     <div>
-      <h3><small>lib/context_request_middleware /</small> sampling_handler.rb</h3>
+      <h3><small>lib/context_request_middleware /</small> error_logger.rb</h3>
     </div>
   </div>
   <!--End Page Title -->
@@ -68,15 +68,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">16</span><small> lines of codes</small></div>
-              <div><span class="metric">1</span><small> methods</small></div>
+              <div><span class="metric">30</span><small> lines of codes</small></div>
+              <div><span class="metric">2</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">6.8</span><small> complexity/method</small></div>
-              <div><span class="metric">2</span><small> churn</small></div>
+              <div><span class="metric">9.5</span><small> complexity/method</small></div>
+              <div><span class="metric">1</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">6.8</span><small> complexity</small></div>
+              <div><span class="metric">18.94</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -88,7 +88,7 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                3
+                2
                 smells
               </a>
             </li>
@@ -100,16 +100,30 @@
     <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
 
 module ContextRequestMiddleware
-  # :nodoc:
-  module SamplingHandler<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank"><b>IrresponsibleModule</b></a>        </span>      </div>      <span>ContextRequestMiddleware::SamplingHandler has no descriptive comment</span>          </div>  </li></ol>
+  # Logger module to provide logging of errors
+  module ErrorLogger
     extend self
 
-    def from_request<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::SamplingHandler#from_request doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
-      ContextRequestMiddleware<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ContextRequestMiddleware::SamplingHandler#from_request performs a nil-check</span>          </div>  </li></ol>
-        .load_class_from_name(ContextRequestMiddleware.sampling_handler,
-                              ContextRequestMiddleware::SamplingHandler.to_s,
-                              ContextRequestMiddleware.sampling_handler_version)
-      &amp;.new
+    # runs block of code and logs an error if any occurs
+    def error_handler
+      yield
+    rescue StandardError =&gt; e<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md" target="_blank"><b>UncommunicativeVariableName</b></a>        </span>      </div>      <span>ContextRequestMiddleware::ErrorLogger#error_handler has the variable name 'e'</span>          </div>  </li></ol>
+      logger.tagged(ContextRequestMiddleware.logger_tags) do
+        logger.error e.message + e.backtrace.join(&#39;\n&#39;)
+      end
+    end
+
+    # Returns logger from these options:
+    # option 1: Rails.logger, as defined in the host application
+    # option 2: new instance of ActiveSupport::TaggedLogging class
+    def logger(logger = Logger)
+      @logger ||= if defined?(Rails.logger.tagged)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::ErrorLogger#logger calls 'Rails.logger' 2 times</span>              <span>Locations:</span>                  <a href="error_logger.html#L21" class="js-smell-location">0</a>                  <a href="error_logger.html#L23" class="js-smell-location">1</a>                  </div>  </li></ol>
+                    # :nocov:
+                    Rails.logger<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::ErrorLogger#logger calls 'Rails.logger' 2 times</span>              <span>Locations:</span>                  <a href="error_logger.html#L21" class="js-smell-location">0</a>                  <a href="error_logger.html#L23" class="js-smell-location">1</a>                  </div>  </li></ol>
+                    # :nocov:
+                  else
+                    ActiveSupport::TaggedLogging.new(logger)
+                  end
     end
   end
 end
