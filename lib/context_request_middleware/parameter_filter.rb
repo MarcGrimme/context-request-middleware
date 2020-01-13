@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # rubocop:disable all
-require 'context_request_middleware/active_support/duplicable'
-require 'context_request_middleware/active_support/extract'
+
+require 'context_request_middleware/duplicable'
 
 module ContextRequestMiddleware
   # ParameterFilter module to filter the contents of provided parameters.
@@ -56,8 +56,13 @@ module ContextRequestMiddleware
           end
         end
 
-        deep_regexps = regexps.extract! { |r| r.to_s.include?("\\.") }
-        deep_strings = strings.extract! { |s| s.include?("\\.") }
+        deep_regexps = regexps.dup
+        deep_regexps.keep_if { |r| r.to_s.include?("\\.") }
+        regexps.delete_if { |r| r.to_s.include?("\\.") }
+
+        deep_strings = strings.dup
+        deep_strings.keep_if { |s| s.include?("\\.") }
+        strings.delete_if { |s| s.include?("\\.") }
 
         regexps << Regexp.new(strings.join("|"), true) unless strings.empty?
         deep_regexps << Regexp.new(deep_strings.join("|"), true) unless deep_strings.empty?
@@ -102,8 +107,8 @@ module ContextRequestMiddleware
           parents.push(key) if deep_regexps
           # :nocov:
         elsif blocks.any?
-          key = key.dup if key.duplicable?
-          value = value.dup if value.duplicable?
+          key = key.dup if Duplicable.check?(key)
+          value = value.dup if Duplicable.check?(value)
           blocks.each { |b| b.arity == 2 ? b.call(key, value) : b.call(key, value, original_params) }
         end
         parents.pop if deep_regexps
