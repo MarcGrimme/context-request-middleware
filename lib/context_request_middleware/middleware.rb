@@ -2,6 +2,7 @@
 
 module ContextRequestMiddleware
   # :nodoc:
+  # rubocop:disable Metrics/ClassLength
   class Middleware
     def initialize(app)
       @app = app
@@ -39,8 +40,18 @@ module ContextRequestMiddleware
       @data[:request_context] = request_context(request)
       @data[:request_start_time] = request_start_time(request)
       @data[:request_method] = request.request_method
-      @data[:request_params] = request.params
+      @data[:request_params] = filter_params(request.params)
       @data[:request_path] = request.path
+    end
+
+    def filter_params(params)
+      return params if ContextRequestMiddleware.parameter_filter_list.empty?
+
+      filter = ContextRequestMiddleware.parameter_filter_class.new(
+        ContextRequestMiddleware.parameter_filter_list,
+        mask: ContextRequestMiddleware.parameter_filter_mask
+      )
+      filter.filter(params)
     end
 
     def others_data(request)
@@ -127,4 +138,5 @@ module ContextRequestMiddleware
         request.get_header('HTTP_X_FORWARDED_HOST').to_s
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end
