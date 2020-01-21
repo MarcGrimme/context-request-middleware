@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'context_request_middleware/push_handler/rabbitmq_push_handler'
+require 'context_request_middleware/push_handler/rabbitmq_push_handler_async'
 
 module ContextRequestMiddleware
   # :nodoc:
