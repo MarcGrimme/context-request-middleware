@@ -187,38 +187,40 @@ module ContextRequestMiddleware
           end
         end
       end
-    end
 
-    context 'with no sample-handler' do
-      let(:sid) { RackSessionCookie.generate_sid }
-      let(:app) { MockRackAppWithSession.new(sid) }
-      let(:env) do
-        Rack::MockRequest
-          .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain',
-                                 'HTTP_X_REQUEST_START' => Time.now.to_f)
-      end
-      let(:request_data) do
-        {
-          app_id: 'anonymous',
-          host: 'example.org',
-          request_context: sid,
-          request_id: nil,
-          request_method: 'GET',
-          request_path: '/some/path',
-          request_params: {},
-          request_start_time: Time.now.to_f,
-          request_status: 200,
-          source: ''
-        }
-      end
-      before do
-        allow(ContextRequestMiddleware).to receive(:sampling_handler)
-          .and_return(nil)
-      end
-      it do
-        expect(subject.call(env))
-          .to match [200, a_hash_including('Content-Type' => 'text/plain'),
-                     ['OK']]
+      context 'with no sample-handler' do
+        let(:sid) { RackSessionCookie.generate_sid }
+        let(:app) { MockRackAppWithSession.new(sid) }
+        let(:env) do
+          Rack::MockRequest
+            .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain',
+                                   'HTTP_X_REQUEST_START' => Time.now.to_f)
+        end
+        let(:request_data) do
+          {
+            app_id: 'anonymous',
+            host: 'example.org',
+            request_context: sid,
+            request_id: nil,
+            request_method: 'GET',
+            request_path: '/some/path',
+            request_params: {},
+            request_start_time: Time.now.to_f,
+            request_status: 200,
+            source: ''
+          }
+        end
+        before do
+          allow(ContextRequestMiddleware).to receive(:sampling_handler)
+            .and_return(nil)
+          allow(push_handler).to receive(:push)
+            .and_return(nil)
+        end
+        it do
+          expect(subject.call(env))
+            .to match [200, a_hash_including('Content-Type' => 'text/plain'),
+                       ['OK']]
+        end
       end
     end
 

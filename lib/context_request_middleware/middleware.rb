@@ -9,21 +9,18 @@ module ContextRequestMiddleware
       @data = {}
     end
 
-    # rubocop:disable Metrics/MethodLength
     def call(env)
       request = ContextRequestMiddleware.request_class.new(env)
-      request(request) if valid_sample?(request)
+      request(request)
       status, header, body = @app.call(env)
       ContextRequestMiddleware::ErrorLogger.error_handler do
-        if valid_sample?(request)
-          response(status, header, body)
-          @context = context(status, header, body, request)
-          push
-        end
+        response(status, header, body)
+        @context = context(status, header, body, request)
+        push_context
+        push if valid_sample?(request)
       end
       [status, header, body]
     end
-    # rubocop:enable Metrics/MethodLength
 
     private
 
@@ -82,8 +79,6 @@ module ContextRequestMiddleware
     end
 
     def push
-      push_context
-
       return unless @data
       return unless @data.any?
 
