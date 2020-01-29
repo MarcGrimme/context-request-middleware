@@ -69,7 +69,13 @@ module ContextRequestMiddleware
       end
 
       def from_env(key, default = nil)
-        ENV.fetch(key, default)
+        ENV.fetch(key + '.' + request_id.to_s, default)
+      end
+
+      def request_id
+        @request_id ||= ContextRequestMiddleware.select_request_headers(
+          ContextRequestMiddleware.request_id_headers, @request
+        )
       end
     end
   end

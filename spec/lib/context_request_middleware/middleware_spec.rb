@@ -222,6 +222,29 @@ module ContextRequestMiddleware
                        ['OK']]
         end
       end
+
+      context 'thread safe' do
+        let(:app) { MockRackApp.new }
+        let(:env) do
+          Rack::MockRequest
+            .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain')
+        end
+
+        before do
+          allow(subject).to receive(:_call)
+            .and_call_original
+          allow(push_handler).to receive(:push)
+            .and_return(nil)
+        end
+
+        it do
+          # assert that _call is called
+          # on a duped instance rather than the original.
+          expect(subject).not_to have_received(:_call)
+          expect_any_instance_of(Middleware).to receive(:_call)
+          subject.call(env)
+        end
+      end
     end
 
     after do

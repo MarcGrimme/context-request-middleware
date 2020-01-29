@@ -6,10 +6,16 @@ module ContextRequestMiddleware
   class Middleware
     def initialize(app)
       @app = app
-      @data = {}
     end
 
     def call(env)
+      @push_handler ||= PushHandler.from_middleware
+      dup._call(env)
+    end
+
+    # rubocop:disable Metrics/MethodLength
+    def _call(env)
+      @data = {}
       request = ContextRequestMiddleware.request_class.new(env)
       request(request)
       status, header, body = @app.call(env)
@@ -19,8 +25,10 @@ module ContextRequestMiddleware
         push_context
         push if valid_sample?(request)
       end
+      env_cleanup(request)
       [status, header, body]
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 
@@ -31,9 +39,7 @@ module ContextRequestMiddleware
     end
 
     def request_data(request)
-      @data[:request_id] = ContextRequestMiddleware.select_request_headers(
-        ContextRequestMiddleware.request_id_headers, request
-      )
+      @data[:request_id] = request_id(request)
       @data[:request_context] = request_context(request)
       @data[:request_start_time] = request_start_time(request)
       @data[:request_method] = request.request_method
@@ -81,8 +87,6 @@ module ContextRequestMiddleware
     def push
       return unless @data
       return unless @data.any?
-
-      @push_handler ||= PushHandler.from_middleware
       return unless @push_handler
 
       @push_handler.push(@data, push_options(@data, 'request'))
@@ -94,8 +98,6 @@ module ContextRequestMiddleware
       return unless @context_retriever.new_context?
       return unless @context
       return unless @context.any?
-
-      @push_handler ||= PushHandler.from_middleware
       return unless @push_handler
 
       @push_handler.push(@context, push_options(@data, 'context'))
@@ -131,6 +133,21 @@ module ContextRequestMiddleware
                                 request)) ||
         request.get_header('action_dispatch.remote_ip').to_s ||
         request.get_header('HTTP_X_FORWARDED_HOST').to_s
+    end
+
+    def request_id(request)
+      @request_id ||= ContextRequestMiddleware.select_request_headers(
+        ContextRequestMiddleware.request_id_headers, request
+      )
+    end
+
+    def env_cleanup(request)
+      env_delete(ContextRequestMiddleware.session_owner_id, request)
+      env_delete(ContextRequestMiddleware.context_status, request)
+    end
+
+    def env_delete(key, request)
+      ENV.delete(key + '.' + request_id(request).to_s)
     end
   end
   # rubocop:enable Metrics/ClassLength
