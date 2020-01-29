@@ -25,7 +25,6 @@ module ContextRequestMiddleware
         push_context
         push if valid_sample?(request)
       end
-      env_cleanup(request)
       [status, header, body]
     end
     # rubocop:enable Metrics/MethodLength
@@ -139,15 +138,6 @@ module ContextRequestMiddleware
       @request_id ||= ContextRequestMiddleware.select_request_headers(
         ContextRequestMiddleware.request_id_headers, request
       )
-    end
-
-    def env_cleanup(request)
-      env_delete(ContextRequestMiddleware.session_owner_id, request)
-      env_delete(ContextRequestMiddleware.context_status, request)
-    end
-
-    def env_delete(key, request)
-      ENV.delete(key + '.' + request_id(request).to_s)
     end
   end
   # rubocop:enable Metrics/ClassLength
