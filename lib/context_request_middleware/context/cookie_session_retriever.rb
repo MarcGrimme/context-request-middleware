@@ -69,7 +69,7 @@ module ContextRequestMiddleware
       end
 
       def from_thread_var(key, default = nil)
-        Thread.current[key] || default
+        RequestStore.store[key] || default
       end
     end
   end

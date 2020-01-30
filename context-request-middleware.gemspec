@@ -19,6 +19,7 @@ requests and their contexts.)
   s.add_runtime_dependency 'connection_pool'
   s.add_runtime_dependency 'logger'
   s.add_runtime_dependency 'rabbitmq_client'
+  s.add_runtime_dependency 'request_store'
   s.add_development_dependency 'license_finder'
   s.add_development_dependency 'rack'
   s.add_development_dependency 'rake', '~> 13'

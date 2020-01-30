@@ -113,11 +113,16 @@ module ContextRequestMiddleware
             app_id: 'anonymous'
           }
         end
+
+        before do
+          RequestStore.delete('cookie_session.user_id')
+        end
+
         it do
           expect(push_handler).to receive(:push)
-            .with(request_data, request_options).and_return(nil)
-          expect(push_handler).to receive(:push)
             .with(context_data, context_options).and_return(nil)
+          expect(push_handler).to receive(:push)
+            .with(request_data, request_options).and_return(nil)
           subject.call(env)
         end
 
