@@ -12,8 +12,7 @@ module ContextRequestMiddleware
       let(:env) do
         Rack::MockRequest.env_for('/some/path',
                                   'CONTENT_TYPE' => 'text/plain',
-                                  'HTTP_X_REQUEST_START' => Time.now.to_f,
-                                  'HTTP_X_REQUEST_ID' => 'test-request-id')
+                                  'HTTP_X_REQUEST_START' => Time.now.to_f)
       end
       let(:response) { Rack::Response.new(['OK'], 200, header) }
       let(:request) { Rack::Request.new(env) }
