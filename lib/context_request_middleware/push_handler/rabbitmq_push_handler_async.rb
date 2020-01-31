@@ -33,8 +33,8 @@ module ContextRequestMiddleware
       # @data a hash representing the data to be published.
       # @options options to be passed to the publish to the exchange.
       def push(data, options)
-        @publisher.publish(data.dup,
-                           options.dup.merge(exchange_name: exchange_name))
+        @publisher.publish(data,
+                           options.merge(exchange_name: exchange_name))
       end
 
       private

@@ -4,6 +4,7 @@ require 'active_support'
 require 'active_support/inflector'
 require 'rack'
 require 'securerandom'
+require 'request_store'
 
 require 'context_request_middleware/railtie' if defined?(Rails)
 require 'context_request_middleware/sampling_handler'
