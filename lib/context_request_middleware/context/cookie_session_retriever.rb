@@ -37,11 +37,11 @@ module ContextRequestMiddleware
       private
 
       def owner_id
-        from_env(ContextRequestMiddleware.session_owner_id, 'unknown')
+        from_thread_var(ContextRequestMiddleware.session_owner_id, 'unknown')
       end
 
       def context_status
-        from_env(ContextRequestMiddleware.context_status, 'unknown')
+        from_thread_var(ContextRequestMiddleware.context_status, 'unknown')
       end
 
       def context_type
@@ -68,8 +68,8 @@ module ContextRequestMiddleware
         @response.headers.fetch(HTTP_HEADER, nil)
       end
 
-      def from_env(key, default = nil)
-        ENV.fetch(key, default)
+      def from_thread_var(key, default = nil)
+        RequestStore.store[key] || default
       end
     end
   end

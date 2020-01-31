@@ -6,20 +6,24 @@ module ContextRequestMiddleware
   class Middleware
     def initialize(app)
       @app = app
-      @data = {}
+    end
+
+    def call(env)
+      @push_handler ||= PushHandler.from_middleware
+      dup._call(env)
     end
 
     # rubocop:disable Metrics/MethodLength
-    def call(env)
+    def _call(env)
+      @data = {}
       request = ContextRequestMiddleware.request_class.new(env)
-      request(request) if valid_sample?(request)
+      request(request)
       status, header, body = @app.call(env)
       ContextRequestMiddleware::ErrorLogger.error_handler do
-        if valid_sample?(request)
-          response(status, header, body)
-          @context = context(status, header, body, request)
-          push
-        end
+        response(status, header, body)
+        @context = context(status, header, body, request)
+        push_context
+        push if valid_sample?(request)
       end
       [status, header, body]
     end
@@ -34,9 +38,7 @@ module ContextRequestMiddleware
     end
 
     def request_data(request)
-      @data[:request_id] = ContextRequestMiddleware.select_request_headers(
-        ContextRequestMiddleware.request_id_headers, request
-      )
+      @data[:request_id] = request_id(request)
       @data[:request_context] = request_context(request)
       @data[:request_start_time] = request_start_time(request)
       @data[:request_method] = request.request_method
@@ -82,12 +84,8 @@ module ContextRequestMiddleware
     end
 
     def push
-      push_context
-
       return unless @data
       return unless @data.any?
-
-      @push_handler ||= PushHandler.from_middleware
       return unless @push_handler
 
       @push_handler.push(@data, push_options(@data, 'request'))
@@ -99,8 +97,6 @@ module ContextRequestMiddleware
       return unless @context_retriever.new_context?
       return unless @context
       return unless @context.any?
-
-      @push_handler ||= PushHandler.from_middleware
       return unless @push_handler
 
       @push_handler.push(@context, push_options(@data, 'context'))
@@ -136,6 +132,12 @@ module ContextRequestMiddleware
                                 request)) ||
         request.get_header('action_dispatch.remote_ip').to_s ||
         request.get_header('HTTP_X_FORWARDED_HOST').to_s
+    end
+
+    def request_id(request)
+      @request_id ||= ContextRequestMiddleware.select_request_headers(
+        ContextRequestMiddleware.request_id_headers, request
+      )
     end
   end
   # rubocop:enable Metrics/ClassLength

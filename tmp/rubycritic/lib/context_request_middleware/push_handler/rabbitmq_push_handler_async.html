@@ -47,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2020-01-21 08:06:45 +0200'>2020-01-21 08:06:45 +0200</time>
+          Updated <time class='js-timeago' datetime='2020-01-31 08:11:16 +0200'>2020-01-31 08:11:16 +0200</time>
         
       </span>
     </div>
@@ -72,11 +72,11 @@
               <div><span class="metric">6</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">4.0</span><small> complexity/method</small></div>
-              <div><span class="metric">1</span><small> churn</small></div>
+              <div><span class="metric">3.6</span><small> complexity/method</small></div>
+              <div><span class="metric">2</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">24.13</span><small> complexity</small></div>
+              <div><span class="metric">21.33</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -132,8 +132,8 @@ module ContextRequestMiddleware
       # @data a hash representing the data to be published.
       # @options options to be passed to the publish to the exchange.
       def push(data, options)
-        @publisher.publish(data.dup,
-                           options.dup.merge(exchange_name: exchange_name))
+        @publisher.publish(data,
+                           options.merge(exchange_name: exchange_name))
       end
 
       private

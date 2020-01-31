@@ -32,7 +32,7 @@ module ContextRequestMiddleware
       end
 
       before do
-        ENV['cookie_session.user_id'] = nil
+        Thread.current['cookie_session.user_id'] = nil
         Timecop.freeze
         allow(ContextRequestMiddleware).to receive(:push_handler)
           .and_return(push_handler_name)
@@ -113,11 +113,16 @@ module ContextRequestMiddleware
             app_id: 'anonymous'
           }
         end
+
+        before do
+          RequestStore.delete('cookie_session.user_id')
+        end
+
         it do
           expect(push_handler).to receive(:push)
-            .with(request_data, request_options).and_return(nil)
-          expect(push_handler).to receive(:push)
             .with(context_data, context_options).and_return(nil)
+          expect(push_handler).to receive(:push)
+            .with(request_data, request_options).and_return(nil)
           subject.call(env)
         end
 
@@ -187,38 +192,63 @@ module ContextRequestMiddleware
           end
         end
       end
-    end
 
-    context 'with no sample-handler' do
-      let(:sid) { RackSessionCookie.generate_sid }
-      let(:app) { MockRackAppWithSession.new(sid) }
-      let(:env) do
-        Rack::MockRequest
-          .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain',
-                                 'HTTP_X_REQUEST_START' => Time.now.to_f)
+      context 'with no sample-handler' do
+        let(:sid) { RackSessionCookie.generate_sid }
+        let(:app) { MockRackAppWithSession.new(sid) }
+        let(:env) do
+          Rack::MockRequest
+            .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain',
+                                   'HTTP_X_REQUEST_START' => Time.now.to_f)
+        end
+        let(:request_data) do
+          {
+            app_id: 'anonymous',
+            host: 'example.org',
+            request_context: sid,
+            request_id: nil,
+            request_method: 'GET',
+            request_path: '/some/path',
+            request_params: {},
+            request_start_time: Time.now.to_f,
+            request_status: 200,
+            source: ''
+          }
+        end
+        before do
+          allow(ContextRequestMiddleware).to receive(:sampling_handler)
+            .and_return(nil)
+          allow(push_handler).to receive(:push)
+            .and_return(nil)
+        end
+        it do
+          expect(subject.call(env))
+            .to match [200, a_hash_including('Content-Type' => 'text/plain'),
+                       ['OK']]
+        end
       end
-      let(:request_data) do
-        {
-          app_id: 'anonymous',
-          host: 'example.org',
-          request_context: sid,
-          request_id: nil,
-          request_method: 'GET',
-          request_path: '/some/path',
-          request_params: {},
-          request_start_time: Time.now.to_f,
-          request_status: 200,
-          source: ''
-        }
-      end
-      before do
-        allow(ContextRequestMiddleware).to receive(:sampling_handler)
-          .and_return(nil)
-      end
-      it do
-        expect(subject.call(env))
-          .to match [200, a_hash_including('Content-Type' => 'text/plain'),
-                     ['OK']]
+
+      context 'thread safe' do
+        let(:app) { MockRackApp.new }
+        let(:env) do
+          Rack::MockRequest
+            .env_for('/some/path', 'CONTENT_TYPE' => 'text/plain')
+        end
+
+        before do
+          allow(subject).to receive(:_call)
+            .and_call_original
+          allow(push_handler).to receive(:push)
+            .and_return(nil)
+        end
+
+        it do
+          # assert that _call is called
+          # on a duped instance rather than the original.
+          expect(subject).not_to have_received(:_call)
+          expect_any_instance_of(Middleware).to receive(:_call)
+          subject.call(env)
+        end
       end
     end
 

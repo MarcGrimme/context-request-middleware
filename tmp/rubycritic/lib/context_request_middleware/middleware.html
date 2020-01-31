@@ -47,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2020-01-13 16:22:52 +0200'>2020-01-13 16:22:52 +0200</time>
+          Updated <time class='js-timeago' datetime='2020-01-31 08:11:16 +0200'>2020-01-31 08:11:16 +0200</time>
         
       </span>
     </div>
@@ -68,15 +68,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">142</span><small> lines of codes</small></div>
-              <div><span class="metric">16</span><small> methods</small></div>
+              <div><span class="metric">144</span><small> lines of codes</small></div>
+              <div><span class="metric">18</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">5.2</span><small> complexity/method</small></div>
-              <div><span class="metric">7</span><small> churn</small></div>
+              <div><span class="metric">4.7</span><small> complexity/method</small></div>
+              <div><span class="metric">8</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">82.4</span><small> complexity</small></div>
+              <div><span class="metric">83.96</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -88,7 +88,7 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                21
+                19
                 smells
               </a>
             </li>
@@ -102,23 +102,27 @@
 module ContextRequestMiddleware
   # :nodoc:
   # rubocop:disable Metrics/ClassLength
-  class Middleware<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@context'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@context_retriever'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@push_handler'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@sample_handler'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware has at least 16 methods</span>          </div>  </li></ol>
+  class Middleware<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@context'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@context_retriever'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@data'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@push_handler'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md" target="_blank"><b>InstanceVariableAssumption</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware assumes too much for instance variable '@sample_handler'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware has at least 18 methods</span>          </div>  </li></ol>
     def initialize(app)
       @app = app
-      @data = {}
+    end
+
+    def call(env)
+      @push_handler ||= PushHandler.from_middleware
+      dup._call(env)
     end
 
     # rubocop:disable Metrics/MethodLength
-    def call(env)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#call has approx 8 statements</span>          </div>  </li></ol>
+    def _call(env)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#_call has approx 10 statements</span>          </div>  </li></ol>
+      @data = {}
       request = ContextRequestMiddleware.request_class.new(env)
-      request(request) if valid_sample?(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#call calls 'valid_sample?(request)' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L15" class="js-smell-location">0</a>                  <a href="middleware.html#L18" class="js-smell-location">1</a>                  </div>  </li></ol>
+      request(request)
       status, header, body = @app.call(env)
       ContextRequestMiddleware::ErrorLogger.error_handler do
-        if valid_sample?(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#call calls 'valid_sample?(request)' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L15" class="js-smell-location">0</a>                  <a href="middleware.html#L18" class="js-smell-location">1</a>                  </div>  </li></ol>
-          response(status, header, body)
-          @context = context(status, header, body, request)
-          push
-        end
+        response(status, header, body)
+        @context = context(status, header, body, request)
+        push_context
+        push if valid_sample?(request)
       end
       [status, header, body]
     end
@@ -133,9 +137,7 @@ module ContextRequestMiddleware
     end
 
     def request_data(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#request_data has approx 6 statements</span>          </div>  </li></ol>
-      @data[:request_id] = ContextRequestMiddleware.select_request_headers(
-        ContextRequestMiddleware.request_id_headers, request
-      )
+      @data[:request_id] = request_id(request)
       @data[:request_context] = request_context(request)
       @data[:request_start_time] = request_start_time(request)
       @data[:request_method] = request.request_method
@@ -144,10 +146,10 @@ module ContextRequestMiddleware
     end
 
     def filter_params(params)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#filter_params doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
-      return params if ContextRequestMiddleware.parameter_filter_list.empty?<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#filter_params calls 'ContextRequestMiddleware.parameter_filter_list' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L48" class="js-smell-location">0</a>                  <a href="middleware.html#L51" class="js-smell-location">1</a>                  </div>  </li></ol>
+      return params if ContextRequestMiddleware.parameter_filter_list.empty?<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#filter_params calls 'ContextRequestMiddleware.parameter_filter_list' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L50" class="js-smell-location">0</a>                  <a href="middleware.html#L53" class="js-smell-location">1</a>                  </div>  </li></ol>
 
       filter = ContextRequestMiddleware.parameter_filter_class.new(
-        ContextRequestMiddleware.parameter_filter_list,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#filter_params calls 'ContextRequestMiddleware.parameter_filter_list' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L48" class="js-smell-location">0</a>                  <a href="middleware.html#L51" class="js-smell-location">1</a>                  </div>  </li></ol>
+        ContextRequestMiddleware.parameter_filter_list,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#filter_params calls 'ContextRequestMiddleware.parameter_filter_list' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L50" class="js-smell-location">0</a>                  <a href="middleware.html#L53" class="js-smell-location">1</a>                  </div>  </li></ol>
         mask: ContextRequestMiddleware.parameter_filter_mask
       )
       filter.filter(params)
@@ -165,8 +167,8 @@ module ContextRequestMiddleware
     # checks if this request changed the context
     def context(status, header, body, request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Long-Parameter-List.md" target="_blank"><b>LongParameterList</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context has 4 parameters</span>          </div>  </li></ol>
       @context = context_retriever(request)&amp;.call(status, header, body)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context performs a nil-check</span>          </div>  </li></ol>
-      @data[:request_context] = @context[:context_id] \<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context calls '@context[:context_id]' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L69" class="js-smell-location">0</a>                  <a href="middleware.html#L70" class="js-smell-location">1</a>                  </div>  </li></ol>
-        if @context &amp;&amp; @context[:context_id]<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context calls '@context[:context_id]' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L69" class="js-smell-location">0</a>                  <a href="middleware.html#L70" class="js-smell-location">1</a>                  </div>  </li></ol>
+      @data[:request_context] = @context[:context_id] \<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context calls '@context[:context_id]' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L71" class="js-smell-location">0</a>                  <a href="middleware.html#L72" class="js-smell-location">1</a>                  </div>  </li></ol>
+        if @context &amp;&amp; @context[:context_id]<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#context calls '@context[:context_id]' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L71" class="js-smell-location">0</a>                  <a href="middleware.html#L72" class="js-smell-location">1</a>                  </div>  </li></ol>
       @context
     end
 
@@ -180,13 +182,9 @@ module ContextRequestMiddleware
         Context.retriever_for_response(request)
     end
 
-    def push<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#push has approx 7 statements</span>          </div>  </li></ol>
-      push_context
-
+    def push
       return unless @data
       return unless @data.any?
-
-      @push_handler ||= PushHandler.from_middleware
       return unless @push_handler
 
       @push_handler.push(@data, push_options(@data, &#39;request&#39;))
@@ -194,12 +192,10 @@ module ContextRequestMiddleware
       nil
     end
 
-    def push_context<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#push_context has approx 6 statements</span>          </div>  </li></ol>
+    def push_context
       return unless @context_retriever.new_context?
       return unless @context
       return unless @context.any?
-
-      @push_handler ||= PushHandler.from_middleware
       return unless @push_handler
 
       @push_handler.push(@context, push_options(@data, &#39;context&#39;))
@@ -229,12 +225,18 @@ module ContextRequestMiddleware
     end
 
     def source(request)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
-      (ContextRequestMiddleware.remote_ip_headers &amp;&amp;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source calls 'ContextRequestMiddleware.remote_ip_headers' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L133" class="js-smell-location">0</a>                  <a href="middleware.html#L135" class="js-smell-location">1</a>                  </div>  </li></ol>
+      (ContextRequestMiddleware.remote_ip_headers &amp;&amp;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source calls 'ContextRequestMiddleware.remote_ip_headers' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L129" class="js-smell-location">0</a>                  <a href="middleware.html#L131" class="js-smell-location">1</a>                  </div>  </li></ol>
        ContextRequestMiddleware
-        .select_request_headers(ContextRequestMiddleware.remote_ip_headers,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source calls 'ContextRequestMiddleware.remote_ip_headers' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L133" class="js-smell-location">0</a>                  <a href="middleware.html#L135" class="js-smell-location">1</a>                  </div>  </li></ol>
+        .select_request_headers(ContextRequestMiddleware.remote_ip_headers,<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Middleware#source calls 'ContextRequestMiddleware.remote_ip_headers' 2 times</span>              <span>Locations:</span>                  <a href="middleware.html#L129" class="js-smell-location">0</a>                  <a href="middleware.html#L131" class="js-smell-location">1</a>                  </div>  </li></ol>
                                 request)) ||
         request.get_header(&#39;action_dispatch.remote_ip&#39;).to_s ||
         request.get_header(&#39;HTTP_X_FORWARDED_HOST&#39;).to_s
+    end
+
+    def request_id(request)
+      @request_id ||= ContextRequestMiddleware.select_request_headers(
+        ContextRequestMiddleware.request_id_headers, request
+      )
     end
   end
   # rubocop:enable Metrics/ClassLength

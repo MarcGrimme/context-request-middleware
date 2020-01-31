@@ -47,7 +47,7 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2019-12-03 20:46:03 +0200'>2019-12-03 20:46:03 +0200</time>
+          Updated <time class='js-timeago' datetime='2020-01-31 08:11:16 +0200'>2020-01-31 08:11:16 +0200</time>
         
       </span>
     </div>
@@ -72,11 +72,11 @@
               <div><span class="metric">11</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">3.7</span><small> complexity/method</small></div>
-              <div><span class="metric">8</span><small> churn</small></div>
+              <div><span class="metric">3.9</span><small> complexity/method</small></div>
+              <div><span class="metric">9</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">41.04</span><small> complexity</small></div>
+              <div><span class="metric">42.41</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -136,11 +136,11 @@ module ContextRequestMiddleware
       private
 
       def owner_id
-        from_env(ContextRequestMiddleware.session_owner_id, &#39;unknown&#39;)
+        from_thread_var(ContextRequestMiddleware.session_owner_id, &#39;unknown&#39;)
       end
 
       def context_status
-        from_env(ContextRequestMiddleware.context_status, &#39;unknown&#39;)
+        from_thread_var(ContextRequestMiddleware.context_status, &#39;unknown&#39;)
       end
 
       def context_type
@@ -167,8 +167,8 @@ module ContextRequestMiddleware
         @response.headers.fetch(HTTP_HEADER, nil)
       end
 
-      def from_env(key, default = nil)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#from_env doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
-        ENV.fetch(key, default)
+      def from_thread_var(key, default = nil)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ContextRequestMiddleware::Context::CookieSessionRetriever#from_thread_var doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+        RequestStore.store[key] || default
       end
     end
   end
