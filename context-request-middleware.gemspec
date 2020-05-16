@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.summary     = %(Middleware to track the different types of \
 requests and their contexts.)
 
-  s.add_runtime_dependency 'activesupport'
+  s.add_runtime_dependency 'activesupport', '4.2.11.3'
   s.add_runtime_dependency 'bunny'
   s.add_runtime_dependency 'connection_pool'
   s.add_runtime_dependency 'logger'
