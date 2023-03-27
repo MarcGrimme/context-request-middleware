@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 requests and their contexts.)
 
   s.add_runtime_dependency 'activesupport'
-  s.add_runtime_dependency 'bunny'
+  s.add_runtime_dependency 'bunny', '0.7.13'
   s.add_runtime_dependency 'connection_pool'
   s.add_runtime_dependency 'logger'
   s.add_runtime_dependency 'rabbitmq_client'
