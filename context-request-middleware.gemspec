@@ -16,7 +16,7 @@ requests and their contexts.)
 
   s.add_runtime_dependency 'activesupport'
   s.add_runtime_dependency 'bunny'
-  s.add_runtime_dependency 'connection_pool'
+  s.add_runtime_dependency 'connection_pool', '3.0.2'
   s.add_runtime_dependency 'logger'
   s.add_runtime_dependency 'rabbitmq_client'
   s.add_runtime_dependency 'request_store'
